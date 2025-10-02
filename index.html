@@ -4,20 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="javascript" href="index.js">
+    <script defer src="index.js"></script>
     <title>Phase 1 Project</title>
 </head>
 <body>
-    <h1>My Project</h1>
-    <nav class="nav-container">
-        <ul class="nav-menu">
-            <li> <a href="#section1">Section 1</a></li>
-            <li> <a href="#section2">Section 2</a></li>
-        </ul>
+    <header>
+        <h1>Catch 'Em All</h1>
+            <nav class="nav-bar">
+            <ul class="nav-menu">
+                <button id="grass">grass</button>
+                <button id="fire">fire</button>
+                <button id="water">water</button>
+                <button id="electric">electric</button>
+            </ul>
     </nav>
+    </header>
+    
+    <main>
+        <div id="sidebar-menu">
+            <ul id="pokemon-list">
+                <li> bulbasaur </li>
+                <li> squirtle </li>
+                <li> charizard </li>
+                <li> pikachu </li>
+            </ul>
+        </div>
 
-    <h2 id="section1">Section 1</h2>
+        <div class="pokemon-card">
+            <h2 id="pokemon-name">Bulbasaur</h2>
+            <div>
+                <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png" alt="bulbasaur">
+                <p id="type">type</p>
+                <p id="attacks">attacks</p>
+            </div>
+        </div>
 
-    <h2 id="section2">Section 2</h2>
+        
+    </main>
+    <footer>
+        <div>
+            <p>Pokemon</p>
+        </div>
+    </footer>
+
 </body>
 </html>
