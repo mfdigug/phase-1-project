@@ -2,56 +2,68 @@
   "pokemon":  [{
     "id": "1",
     "name": "bulbasaur",
-    "type": "grass"
+    "type": "grass",
+    "attacks": "swipe, sunbeam"
 },
 {
     "id": "2",
     "name": "ivysaur",
-    "type": "grass"
+    "type": "grass",
+    "attacks": "swipe, sunbeam"
+
 },
 {
     "id": "3",
     "name": "venusaur",
-    "type": "grass"
+    "type": "grass",
+    "attacks": "swipe, sunbeam"
 },
 {
     "id": "4",
     "name": "charmander",
-    "type": "fire"
+    "type": "fire",
+    "attacks": "swipe, sunbeam"
 },
 {
     "id": "5",
     "name": "charmeleon",
-    "type": "fire"
+    "type": "fire",
+    "attacks": "swipe, sunbeam"
 },
 {
     "id": "6",
     "name": "charizard",
-    "type": "fire"
+    "type": "fire",
+    "attacks": "swipe, sunbeam"
 },
 {
     "id": "7",
     "name": "squirtle",
-    "type": "fire"
+    "type": "fire",
+    "attacks": "swipe, sunbeam"
 },
 {
     "id": "8",
     "name": "wartortle",
-    "type": "water"
+    "type": "water",
+    "attacks": "swipe, sunbeam"
 },
 {
     "id": "9",
     "name": "blastoise",
-    "type": "water"
+    "type": "water",
+    "attacks": "swipe, sunbeam"
 },
 {
     "id": "10",
     "name": "pikachu",
-    "type": "electric"
+    "type": "electric",
+    "attacks": "swipe, sunbeam"
 },
 {
     "id": "11",
     "name": "raichu",
-    "type": "electric"
+    "type": "electric",
+    "attacks": "swipe, sunbeam"
 }]
 }
