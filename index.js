@@ -1,10 +1,15 @@
+//variables
+
 const pokemonCard = document.querySelector(".pokemon-card")
 const pokemonList = document.querySelector("#pokemon-list")
 const pokemonName = document.querySelector("#pokemon-name")
+const pokemonId = document.querySelector("#pokemon-id")
+const pokemonType = document.querySelector("#pokemon-type")
+const pokemonAttacks = document.querySelector("#attack-list")
+const pokemonImg = document.querySelector("#display-pokemon-img")
 
 
-
-
+//display functions
 function listPokemon(pokemon) {
    for (let i = 0; i < pokemon.length; i++) {
    const li = document.createElement("li");
@@ -19,8 +24,16 @@ function listPokemon(pokemon) {
 
 function renderPokemon(displayPokemon) {
       console.log(displayPokemon);
+      
+      pokemonName.innerText = displayPokemon.name
+      pokemonId.innerText = "No: " + displayPokemon.id 
+      pokemonType.innerText = "Type: " + displayPokemon.type
+      pokemonAttacks.innerText = "Attacks: " + displayPokemon.attacks
+      pokemonImg.src = displayPokemon.img
    }
 
+
+//fetch requests
 fetch("http://localhost:3000/pokemon")
 .then(res => res.json())
 .then(pokemon => listPokemon(pokemon))
