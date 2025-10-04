@@ -65,10 +65,21 @@ function updatePokemonList(pokemon) {
 
 function handleSubmitNewPokemon(e){
    e.preventDefault();
-   console.log(e)
-   console.log(e.target.newPokeId.value)
-   console.log(e.target.newPokeName.value);
-   console.log(e.target.newPokeType.value)
+   const newPokemon = {
+      "id" : e.target.newPokeId.value,
+      "name" : e.target.newPokeName.value,
+      "type" : e.target.newPokeType.value
+   }
+   console.log(newPokemon)
+
+   fetch('http://localhost:3000/pokemon',{
+      method: 'POST',
+      headers: {
+         'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(newPokemon)
+   }).then(res => res.json())
+   .then(newPokemon => console.log(newPokemon))
 }
 
 //eventListeners
