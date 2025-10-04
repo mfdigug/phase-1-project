@@ -1,5 +1,4 @@
 //variables
-
 const pokemonCard = document.querySelector("#pokemon-card")
 const pokemonList = document.querySelector("#pokemon-list")
 const pokemonName = document.querySelector("#pokemon-name")
@@ -8,28 +7,15 @@ const pokemonType = document.querySelector("#pokemon-type")
 const pokemonAttacks = document.querySelector("#attack-list")
 const welcomeMessage = document.querySelector("#welcome-message")
 const pokemonImg = document.querySelector("#display-pokemon-img")
+//button variables
 const fireButton = document.querySelector("#fire")
-
+const waterButton = document.querySelector("#water")
+const grassButton = document.querySelector("#grass")
+const electricButton = document.querySelector("#electric")
 
 //display functions
 
 function listPokemon(pokemon) {
-   
-   for (let i = 0; i < pokemon.length; i++) {
-   const li = document.createElement("li");
-   li.innerText = pokemon[i].name;
-   li.dataset.id = pokemon[i].id
-   pokemonList.appendChild(li);
-   
-   li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
-   }
-}
-
-fireButton.addEventListener('click', (e) => fetchFirePokemon(e))
-
-
-function updatePokemonList(pokemon) {
-   pokemonList.innerText = "";
    for (let i = 0; i < pokemon.length; i++) {
    const li = document.createElement("li");
    li.innerText = pokemon[i].name;
@@ -40,7 +26,6 @@ function updatePokemonList(pokemon) {
    }
 }
    
-
 
 function renderPokemon(displayPokemon) {
       //css style changes
@@ -54,8 +39,26 @@ function renderPokemon(displayPokemon) {
       pokemonId.innerText = "No: " + displayPokemon.id 
       pokemonType.innerText = "Type: " + displayPokemon.type
       pokemonImg.src = displayPokemon.img
-   }
+}
 
+function updatePokemonList(pokemon) {
+   pokemonList.innerText = "";
+   for (let i = 0; i < pokemon.length; i++) {
+   const li = document.createElement("li");
+   li.innerText = pokemon[i].name;
+   li.dataset.id = pokemon[i].id
+   pokemonList.appendChild(li);
+   
+   li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
+   }
+}
+
+//eventListeners
+
+fireButton.addEventListener('click', (e) => fetchPokemonByType(e))
+waterButton.addEventListener('click', (e) => fetchPokemonByType(e))
+grassButton.addEventListener('click', (e) => fetchPokemonByType(e))
+electricButton.addEventListener('click', (e) => fetchPokemonByType(e))
 
 //fetch requests
 fetch("http://localhost:3000/pokemon")
@@ -69,13 +72,13 @@ function fetchPokemonForDisplay(pokemonId) {
    
 }
 
-function fetchFirePokemon(e) {
+function fetchPokemonByType(e) {
    fetch("http://localhost:3000/pokemon")
    .then(res => res.json())
    .then(pokemon => {
-         const firePokemon = pokemon.filter((pokemon) =>
+         const pokemonByType = pokemon.filter((pokemon) =>
          pokemon.type === e.target.id)
-         updatePokemonList(firePokemon)
+         updatePokemonList(pokemonByType)
 
    })
 }
