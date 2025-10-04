@@ -8,10 +8,13 @@ const pokemonType = document.querySelector("#pokemon-type")
 const pokemonAttacks = document.querySelector("#attack-list")
 const welcomeMessage = document.querySelector("#welcome-message")
 const pokemonImg = document.querySelector("#display-pokemon-img")
+const fireButton = document.querySelector("#fire")
+
 
 //display functions
 
 function listPokemon(pokemon) {
+   
    for (let i = 0; i < pokemon.length; i++) {
    const li = document.createElement("li");
    li.innerText = pokemon[i].name;
@@ -20,15 +23,30 @@ function listPokemon(pokemon) {
    
    li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
    }
-
-
 }
+
+fireButton.addEventListener('click', (e) => fetchFirePokemon(e))
+
+
+function updatePokemonList(pokemon) {
+   pokemonList.innerText = "";
+   for (let i = 0; i < pokemon.length; i++) {
+   const li = document.createElement("li");
+   li.innerText = pokemon[i].name;
+   li.dataset.id = pokemon[i].id
+   pokemonList.appendChild(li);
+   
+   li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
+   }
+}
+   
+
 
 function renderPokemon(displayPokemon) {
       //css style changes
       pokemonCard.classList.remove('initial-render')
       pokemonCard.classList.add('pokemon-card')
-      welcomeMessage.classList.add('hidden')
+      welcomeMessage.innerText = ""
       pokemonImg.classList.remove('hidden')
 
       //info for display
@@ -49,4 +67,15 @@ function fetchPokemonForDisplay(pokemonId) {
       .then(res => res.json())
       .then(displayPokemon => renderPokemon(displayPokemon))
    
-   }
+}
+
+function fetchFirePokemon(e) {
+   fetch("http://localhost:3000/pokemon")
+   .then(res => res.json())
+   .then(pokemon => {
+         const firePokemon = pokemon.filter((pokemon) =>
+         pokemon.type === e.target.id)
+         updatePokemonList(firePokemon)
+
+   })
+}
