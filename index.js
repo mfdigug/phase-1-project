@@ -8,6 +8,8 @@ const pokemonAttacks = document.querySelector("#attack-list")
 const welcomeMessage = document.querySelector("#welcome-message")
 const pokemonImg = document.querySelector("#display-pokemon-img")
 const error = document.querySelector(".error")
+const form = document.querySelector("form")
+
 
 //button variables
 const fireButton = document.querySelector("#fire")
@@ -61,27 +63,40 @@ function updatePokemonList(pokemon) {
    }
 }
 
-let id = 0;
+function handleSubmitNewPokemon(e){
+   e.preventDefault();
+   console.log(e)
+   console.log(e.target.newPokeId.value)
+   console.log(e.target.newPokeName.value);
+   console.log(e.target.newPokeType.value)
+}
+
 //eventListeners
-document.addEventListener('keydown', (e) => { 
-   
+
+let id = 0;
+//arrow keys
+document.addEventListener('keydown', (e) => {
       if (e.key === "ArrowDown") {   
          id += 1;
          fetchPokemonForDisplay(id)
-      }
-      else if (e.key === "ArrowUp") {
+      } else if (e.key === "ArrowUp") {
          id -= 1;
          fetchPokemonForDisplay(id)
       }  
    })
 
-
-
+//filter buttons
 fireButton.addEventListener('click', (e) => fetchPokemonByType(e))
 waterButton.addEventListener('click', (e) => fetchPokemonByType(e))
 grassButton.addEventListener('click', (e) => fetchPokemonByType(e))
 electricButton.addEventListener('click', (e) => fetchPokemonByType(e))
 
+//form submission
+form.addEventListener('submit', (e) => handleSubmitNewPokemon(e))
+
+
+
+//error function
 function renderUncaught(pokemonId) {
    error.classList.remove('hidden')
    error.innerText = "Pokemon no. " + pokemonId + " not yet caught"
