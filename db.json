@@ -55,7 +55,7 @@
 },
 {
     "id": "4",
-    "name": "charmander",
+    "name": "Charmander",
     "img" : "https://img.pokemondb.net/artwork/large/charmander.jpg",
     "ht" : "0.6m",
     "wt" : "8.5kg",
@@ -73,7 +73,7 @@
 },
 {
     "id": "5",
-    "name": "charmeleon",
+    "name": "Charmeleon",
     "img" : "https://img.pokemondb.net/artwork/large/charmeleon.jpg",
     "ht" : "1.1m",
     "wt" : "19.0kg",
@@ -91,7 +91,7 @@
 },
 {
     "id": "6",
-    "name": "charizard",
+    "name": "Charizard",
     "img" : "https://img.pokemondb.net/artwork/large/charizard.jpg",
     "ht" : "1.7m",
     "wt" : "90.5kg",
@@ -109,7 +109,7 @@
 },
 {
     "id": "7",
-    "name": "squirtle",
+    "name": "Squirtle",
     "img" : "https://img.pokemondb.net/artwork/large/squirtle.jpg",
     "ht" : "0.5m",
     "wt" : "9.0kg",
@@ -127,7 +127,7 @@
 },
 {
     "id": "8",
-    "name": "wartortle",
+    "name": "Wartortle",
     "img" : "https://img.pokemondb.net/artwork/large/wartortle.jpg",
     "ht" : "1.0m",
     "wt" : "22.5kg",
@@ -145,7 +145,7 @@
 },
 {
     "id": "9",
-    "name": "blastoise",
+    "name": "Blastoise",
     "img" : "https://img.pokemondb.net/artwork/large/blastoise.jpg",
     "ht" : "1.6m",
     "wt" : "85.5kg",
@@ -163,7 +163,7 @@
 },
 {
     "id": "25",
-    "name": "pikachu",
+    "name": "Pikachu",
     "img" : "https://img.pokemondb.net/artwork/large/pikachu.jpg",
     "ht" : "0.4m",
     "wt" : "6.0kg",
@@ -181,7 +181,7 @@
 },
 {
     "id": "26",
-    "name": "raichu",
+    "name": "Raichu",
     "img" : "https://img.pokemondb.net/artwork/large/raichu.jpg",
     "ht" : "0.8m",
     "wt" : "30.0kg",
