@@ -199,9 +199,10 @@
       "attack2 power": 110
     },
     {
-      "id": "13",
-      "name": "Rattata",
-      "type": "fire"
+      "id": "10",
+      "name": "Caterpie",
+      "type": "grass",
+      "img": "https://img.pokemondb.net/artwork/large/caterpie.jpg"
     }
   ]
 }

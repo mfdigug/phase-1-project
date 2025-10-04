@@ -63,23 +63,19 @@ function updatePokemonList(pokemon) {
    }
 }
 
+
+//catch a new pokemon
 function handleSubmitNewPokemon(e){
    e.preventDefault();
    const newPokemon = {
       "id" : e.target.newPokeId.value,
       "name" : e.target.newPokeName.value,
-      "type" : e.target.newPokeType.value
+      "type" : e.target.newPokeType.value,
+      "img" : e.target.newPokePic.value
    }
-   console.log(newPokemon)
 
-   fetch('http://localhost:3000/pokemon',{
-      method: 'POST',
-      headers: {
-         'Content-Type' : 'application/json'
-      },
-      body: JSON.stringify(newPokemon)
-   }).then(res => res.json())
-   .then(newPokemon => console.log(newPokemon))
+   addNewPokemon(newPokemon)
+   renderPokemon(newPokemon)
 }
 
 //eventListeners
@@ -141,6 +137,17 @@ function fetchPokemonByType(e) {
          updatePokemonList(pokemonByType)
 
    })
+}
+
+function addNewPokemon(newPokemon){
+fetch('http://localhost:3000/pokemon',{
+      method: 'POST',
+      headers: {
+         'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(newPokemon)
+   }).then(res => res.json())
+   .then(newPokemon => alert("You caught " + newPokemon.name))
 }
 
 
