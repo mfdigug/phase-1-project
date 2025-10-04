@@ -16,12 +16,7 @@ function listPokemon(pokemon) {
    li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
    }
 
-   function fetchPokemonForDisplay(pokemonId) {
-      fetch(`http://localhost:3000/pokemon/${pokemonId}`)
-      .then(res => res.json())
-      .then(displayPokemon => console.log(displayPokemon))
    
-   }
 
    //function renderPokemon(pokemonForDisplay) {
    //   pokemonName.innerText = pokemonForDisplay;
@@ -32,3 +27,10 @@ function listPokemon(pokemon) {
 fetch("http://localhost:3000/pokemon")
 .then(res => res.json())
 .then(pokemon => listPokemon(pokemon))
+
+function fetchPokemonForDisplay(pokemonId) {
+      fetch(`http://localhost:3000/pokemon/${pokemonId}`)
+      .then(res => res.json())
+      .then(displayPokemon => console.log(displayPokemon))
+   
+   }
