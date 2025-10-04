@@ -13,14 +13,15 @@ function listPokemon(pokemon) {
    pokemonList.appendChild(li);
    
 
-   li.addEventListener('click', (e) => console.log(e))
-   }   
-   //function fetchPokemonforDisplay(pokemonForDisplay) {
-   //   fetch(`http://localhost:3000/pokemon/${pokemonForDisplay}`)
-   //   .then(res => res.json())
-    //  .then(displayPokemon => console.log(displayPokemon))
+   li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
+   }
+
+   function fetchPokemonForDisplay(pokemonId) {
+      fetch(`http://localhost:3000/pokemon/${pokemonId}`)
+      .then(res => res.json())
+      .then(displayPokemon => console.log(displayPokemon))
    
-   //}
+   }
 
    //function renderPokemon(pokemonForDisplay) {
    //   pokemonName.innerText = pokemonForDisplay;
