@@ -7,31 +7,36 @@ const pokemonType = document.querySelector("#pokemon-type")
 const pokemonAttacks = document.querySelector("#attack-list")
 const welcomeMessage = document.querySelector("#welcome-message")
 const pokemonImg = document.querySelector("#display-pokemon-img")
+const error = document.querySelector("#error")
+
 //button variables
 const fireButton = document.querySelector("#fire")
 const waterButton = document.querySelector("#water")
 const grassButton = document.querySelector("#grass")
 const electricButton = document.querySelector("#electric")
 
+let id = 0;
 //display functions
 
 function listPokemon(pokemon) {
+   pokemonCard.classList.add('initial-render');
    for (let i = 0; i < pokemon.length; i++) {
-   const li = document.createElement("li");
-   li.innerText = pokemon[i].name;
-   li.dataset.id = pokemon[i].id
-   pokemonList.appendChild(li);
-   
-   li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
-   }
+      const li = document.createElement("li");
+      li.innerText = pokemon[i].name;
+      li.dataset.id = pokemon[i].id
+      pokemonList.appendChild(li);
+      
+      li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id)
+   )}
 }
    
 
 function renderPokemon(displayPokemon) {
       //css style changes
       pokemonCard.classList.remove('initial-render')
+      error.classList.remove('error')
+      welcomeMessage.innerHTML = "";
       pokemonCard.classList.add('pokemon-card')
-      welcomeMessage.innerText = ""
       pokemonImg.classList.remove('hidden')
 
       //info for display
@@ -53,7 +58,21 @@ function updatePokemonList(pokemon) {
    }
 }
 
+
+
 //eventListeners
+
+document.addEventListener('keydown', (e) => { 
+   if (e.key === "ArrowDown") {   
+      id += 1;
+      fetchPokemonForDisplay(id)
+   }
+   else if (e.key === "ArrowUp") {
+      id -= 1;
+      fetchPokemonForDisplay(id)
+   }
+})
+
 
 fireButton.addEventListener('click', (e) => fetchPokemonByType(e))
 waterButton.addEventListener('click', (e) => fetchPokemonByType(e))
@@ -61,15 +80,25 @@ grassButton.addEventListener('click', (e) => fetchPokemonByType(e))
 electricButton.addEventListener('click', (e) => fetchPokemonByType(e))
 
 //fetch requests
+
 fetch("http://localhost:3000/pokemon")
 .then(res => res.json())
 .then(pokemon => listPokemon(pokemon))
 
+
 function fetchPokemonForDisplay(pokemonId) {
       fetch(`http://localhost:3000/pokemon/${pokemonId}`)
-      .then(res => res.json())
+      .then(res => {
+         if(!res.ok) {
+            error.classList.add('error')
+            error.innerText = "pokemon no. " + pokemonId + " has not been found yet"
+            //alert("pokemon no. " + pokemonId + " has not been found yet")
+         }
+            return res.json()
+         
+      })
       .then(displayPokemon => renderPokemon(displayPokemon))
-   
+      .catch(err => console.log(err))
 }
 
 function fetchPokemonByType(e) {
@@ -82,3 +111,5 @@ function fetchPokemonByType(e) {
 
    })
 }
+
+
