@@ -7,7 +7,7 @@ const pokemonId = document.querySelector("#pokemon-id")
 const pokemonType = document.querySelector("#pokemon-type")
 const pokemonAttacks = document.querySelector("#attack-list")
 const welcomeMessage = document.querySelector("#welcome-message")
-//const pokemonImg = document.querySelector("#display-pokemon-img")
+const pokemonImg = document.querySelector("#display-pokemon-img")
 
 //display functions
 
@@ -29,15 +29,13 @@ function renderPokemon(displayPokemon) {
       pokemonCard.classList.remove('initial-render')
       pokemonCard.classList.add('pokemon-card')
       welcomeMessage.classList.add('hidden')
+      pokemonImg.classList.remove('hidden')
 
       //info for display
       pokemonName.innerText = displayPokemon.name
       pokemonId.innerText = "No: " + displayPokemon.id 
       pokemonType.innerText = "Type: " + displayPokemon.type
-      
-      const pokemonImg = document.createElement("img")
       pokemonImg.src = displayPokemon.img
-      pokemonCard.append(pokemonImg)
    }
 
 

@@ -9,6 +9,30 @@ font-family: 'Courier New', Courier, monospace;
     display: none;
 }
 
+/* added typewriter effect */
+#welcome-message {
+    width: 0;
+    display: inline-block;
+    border-right: 0.15em solid grey;
+    overflow: hidden;
+    white-space: nowrap;    
+    animation:
+        typing 2s steps(31, end) forwards,
+        blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
+
+@keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: grey}
+    }
+
+/* end typewriter effect */
+
 header {
     height: 20%;
     width: 100%;
