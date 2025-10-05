@@ -6,6 +6,7 @@ const pokemonId = document.querySelector("#pokemon-id")
 const pokemonType = document.querySelector("#pokemon-type")
 const pokemonAttacks = document.querySelector("#attack-list")
 const welcomeMessage = document.querySelector("#welcome-message")
+const typeIcon = document.querySelector('#type-icon')
 const pokemonImg = document.querySelector("#display-pokemon-img")
 const error = document.querySelector(".error")
 const form = document.querySelector("form")
@@ -43,12 +44,26 @@ function renderPokemon(displayPokemon) {
       welcomeMessage.innerHTML = "";
       pokemonCard.classList.add('pokemon-card')
       pokemonImg.classList.remove('hidden')
+      typeIcon.classList.remove('hidden')
 
       //info for display
       pokemonName.innerText = displayPokemon.name
       pokemonId.innerText = "No: " + displayPokemon.id 
       pokemonType.innerText = "Type: " + displayPokemon.type
       pokemonImg.src = displayPokemon.img
+
+      if(displayPokemon.type === "grass") {
+         typeIcon.src = "https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png"
+      } else if (displayPokemon.type === "fire") {
+         typeIcon.src = "https://archives.bulbagarden.net/media/upload/a/ad/Fire-attack.png"
+
+      } else if (displayPokemon.type === "water") {
+         typeIcon.src = "https://archives.bulbagarden.net/media/upload/thumb/1/11/Water-attack.png/40px-Water-attack.png"
+      } else if (displayPokemon.type === "electric") {
+         typeIcon.src = "https://archives.bulbagarden.net/media/upload/0/04/Lightning-attack.png"
+      }
+
+
 };
 
 function updatePokemonList(pokemon) {

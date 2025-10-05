@@ -5,6 +5,7 @@ padding: 0;
 font-family: 'Courier New', Courier, monospace;
 }
 
+
 .hidden {
     display: none;
 }
@@ -40,22 +41,26 @@ header {
     position: sticky;
     top: 0;
     z-index: 40;
-    background-color: rgb(175, 175, 175);
+    background-color: rgb(255, 255, 255);
 }
 
 h1 {
-    color: rgb(0, 0, 0);
+    color: white;
     width: 100%;
     margin-bottom: 5px;
     text-align: center;
-    border: 2px solid red;
     border-radius: 4px;
-    background: linear-gradient(rgb(255, 0, 0), rgb(255, 166, 0));
+    background-color: rgb(211, 12, 12);
+    /* background: linear-gradient(rgb(255, 255, 255), rgb(237, 87, 87)); */
+}
+
+h1 img {
+    height: 1em
 }
 
 .nav-bar {
     display: flex;
-    background-color: rgb(175, 175, 175);
+    background-color: rgb(255, 254, 254);
     justify-content: center;
     align-items: center;
     font-size: 1rem;
@@ -74,6 +79,7 @@ h1 {
 }
 
 nav button {
+    color: antiquewhite;
     display: flex;
     text-decoration: none;
     font-weight: bold;
@@ -85,22 +91,31 @@ nav button {
     border-radius: 4px;
 }
 
-nav button:active {
-    color: purple; 
-}
-
 nav button:hover {
     color: rgb(228, 216, 216);;
 }
 
-h2 {
-    color: rgb(0, 0, 0);
-    font-size: 3rem;
+#grass {
+    background: linear-gradient(to top, rgb(2, 43, 8), rgb(148, 251, 184)); 
 }
+
+#fire {
+    background: linear-gradient(to top, rgb(158, 3, 3), rgb(245, 87, 20));
+}
+
+#water {
+    background: linear-gradient(to top, rgb(47, 0, 149), rgb(122, 193, 250));
+}
+
+#electric {
+    background: linear-gradient(to top, rgb(255, 100, 4), rgb(252, 210, 24));
+}
+
 
 main {
     border: 5px solid rgb(245, 0, 0);
     background-color: rgba(255, 29, 29, 0.694);
+    height: 80%;
     width: 100%;
     margin: 0 auto;
     padding:50px;
@@ -110,11 +125,12 @@ main {
     grid-template-areas: 
         "sb pc pc";
 
-    overflow: hidden;
+    overflow: auto;
     justify-content: center;
     align-items: center;   
-
 }
+
+
 
 #sidebar-menu {
     grid-area: "sb";
@@ -123,10 +139,12 @@ main {
     background-color: rgb(255, 255, 255);
     padding: 0.5em;
     margin: 1em;
+    overflow: auto;
 }
 
 li {
     list-style-type: none;
+    padding-bottom: 2px;
 }
 
 
@@ -141,7 +159,6 @@ li {
     margin: 0 auto;
     padding: 50px;
 }
-
 
 
 .pokemon-card{
@@ -161,6 +178,26 @@ li {
     
 }
 
+#pokemon-card-header {
+    white-space: nowrap;
+}
+
+h2 {
+    color: rgb(0, 0, 0);
+    font-size: 2rem;
+    display: inline-block;
+}
+
+#type-icon {
+    height: 2em;
+}
+
+#display-pokemon-img {
+    height: 8em;
+    width: 8em;
+    margin-bottom: 1em;
+}
+
 .error {
     border: 5px solid rgb(255, 0, 0);
     background-color: rgb(0, 0, 0);
@@ -170,24 +207,58 @@ li {
     width: 60%;
 }
 
-img {
-    height: 40%;
-    width: 40%;
-}
-
 
 footer {
     border: 5px solid black;
     background-color: rgb(37, 36, 36);
     position: sticky;
+    padding: 10px;
     bottom: 0;
     color: antiquewhite;
-    height: fit-content;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+
+fieldset {
+    padding: 0 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;    
+}
+
+legend {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+#newPokeName {
+    margin-left: 29px;
+}
+
+#newPokeId {
+    margin-left: 48px;
+}
+
+#form-group-2 p {
+    padding-bottom: 5px
+}
+
+
+.submit {
+    padding: 5px;
+    margin: 5px 0;
+    margin-left: 250px;
+}
+
+
+
+
+
+
+
 
 
 

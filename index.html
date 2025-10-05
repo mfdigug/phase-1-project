@@ -9,8 +9,11 @@
 </head>
 <body>
     <header>
-        <h1>Catch 'Em All</h1>
-            <nav class="nav-bar">
+        
+        <h1> 
+            <img src="images/game.png" alt=""> 
+            Catch 'Em All</h1>
+        <nav class="nav-bar">
             <ul class="nav-menu">
                 <button id="grass">grass</button>
                 <button id="fire">fire</button>
@@ -28,11 +31,31 @@
 
         <div id="pokemon-card">
             <p id="welcome-message">Welcome to the world of Pokemon</p>
-            <h2 id="pokemon-name"></h2>
+            <div id="pokemon-card-header">
+                <img id="type-icon" class="hidden">
+            <h2 id="pokemon-name">
+            </h2>
+
+            </div>
+            
             <img id="display-pokemon-img" class="hidden" src="" alt="">
             <div id="pokemon-id"></div>
             <div id="pokemon-type"></div>
-            <div id="attack-list"></div>
+            <div id="specifications">  ht: 0.7m wt: 6.9kg</div>
+            <div id="stats-list">
+                hp: 45
+                attack: 49
+                defense: 49
+                speed: 45
+            </div>
+            <div id="attack-list">
+                attack1: Tackle,
+                attack1 type: normal
+                attack1 power: 40
+                attack2: Vine Whip
+                attack2 type: grass
+                attack2 power: 45
+            </div>
         
             <div class="error">
             </div>
@@ -42,25 +65,29 @@
     </main>
 
     <footer>
-        <div>
-            <h3>Add a Pokemon</h3>
-            <form action="">
+        <form action="">
+            <fieldset>
+            <legend>Add a Pokemon</legend>
+    
+                <div id="form-group-1">
                 <label for="newPokeName">Pokemon Name:</label>
                 <input type="text" id="newPokeName"><br>
                 
                 <label for="newPokeId">Pokemon Id:</label>
                 <input type="text" id="newPokeId"><br>
 
-                <label for="newPokePic">Pokemon Picture</label>
+                <label for="newPokePic">Pokemon Picture:</label>
                 <input type="text" id="newPokePic"><br>
-                
+                </div>
+
+                <div id="form-group-2">
                 <p>What is the pokemon's type?</p>
 
                 <input type="radio" id="newPokeType" value="grass">
                 <label for="newPokeType">grass</label>
 
                 <input type="radio" id="newPokeType" value="fire">
-                <label for="newPokeType">fire</label>
+                <label for="newPokeType">fire</label> <br>
 
                 <input type="radio" id="newPokeType" value="water">
                 <label for="newPokeType">water</label>
@@ -68,9 +95,11 @@
                 <input type="radio" id="newPokeType" value="electric">
                 <label for="newPokeType">electric</label><br>
 
-                <input type="submit">
-            </form>
-        </div>
+                <input class="submit" type="submit">
+                </div>               
+
+            </fieldset>
+        </form>
     </footer>
 
 </body>
