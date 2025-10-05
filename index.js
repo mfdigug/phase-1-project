@@ -1,16 +1,26 @@
 //variables
-const pokemonCard = document.querySelector("#pokemon-card")
+
 const pokemonList = document.querySelector("#pokemon-list")
-const pokemonName = document.querySelector("#pokemon-name")
-const pokemonId = document.querySelector("#pokemon-id")
-const pokemonType = document.querySelector("#pokemon-type")
-const pokemonAttacks = document.querySelector("#attack-list")
+
 const welcomeMessage = document.querySelector("#welcome-message")
+
+//pokemon card variables
+const pokemonCard = document.querySelector("#pokemon-card")
+const header = document.querySelector('#pokemon-card-header')
 const typeIcon = document.querySelector('#type-icon')
 const pokemonImg = document.querySelector("#display-pokemon-img")
 const error = document.querySelector(".error")
 const form = document.querySelector("form")
-
+const pokemonName = document.querySelector("#pokemon-name")
+const pokemonId = document.querySelector("#pokemon-id")
+const pokemonType = document.querySelector("#pokemon-type")
+const pokemonHeight = document.querySelector("#pokemon-height")
+const pokemonWeight = document.querySelector("#pokemon-weight")
+const specifications = document.querySelector('#specifications')
+const stats = document.querySelector('#stats-list')
+const attacks = document.querySelector("#attack-list")
+const attack1 = document.querySelector("#attack1")
+const attack2 = document.querySelector("#attack2")
 
 //button variables
 const fireButton = document.querySelector("#fire")
@@ -23,6 +33,7 @@ const electricButton = document.querySelector("#electric")
 
 function listPokemon(pokemon) {
    pokemonCard.classList.add('initial-render');
+   header.classList.add('hidden')
    error.classList.add('hidden')
    for (let i = 0; i < pokemon.length; i++) {
       const li = document.createElement("li");
@@ -40,17 +51,37 @@ function renderPokemon(displayPokemon) {
   
    //css style changes
       error.classList.add('hidden')
-      pokemonCard.classList.remove('initial-render')
       welcomeMessage.innerHTML = "";
+      pokemonCard.classList.remove('initial-render')
+      pokemonCard.classList.remove('hidden')
       pokemonCard.classList.add('pokemon-card')
+      header.classList.remove('hidden')
       pokemonImg.classList.remove('hidden')
       typeIcon.classList.remove('hidden')
+      specifications.classList.remove('hidden')
+      specifications.classList.add('specifications')
+      stats.classList.remove('hidden')
+      stats.classList.add('stats-list')
+      attacks.classList.remove('hidden')
+      attacks.classList.add('attack-list')
+
 
       //info for display
-      pokemonName.innerText = displayPokemon.name
-      pokemonId.innerText = "No: " + displayPokemon.id 
-      pokemonType.innerText = "Type: " + displayPokemon.type
+      pokemonName.innerText = displayPokemon.name;
+      pokemonId.innerText = "No: " + displayPokemon.id; 
+      pokemonType.innerText = "Type: " + displayPokemon.type;
+      pokemonHeight.innerText = "Ht: " + displayPokemon.ht;
+      pokemonWeight.innerText = "Wt: " + displayPokemon.wt;
       pokemonImg.src = displayPokemon.img
+
+      stats.innerHTML = `
+      <div>hp: ${displayPokemon.hp}</div>
+      <div>attack: ${displayPokemon.attack}</div>
+      <div>defense: ${displayPokemon.defense}</div>
+      <div>speed: ${displayPokemon.speed}</div>
+      `
+      attack1.innerText = displayPokemon.attack1
+      attack2.innerText = displayPokemon.attack2
 
       if(displayPokemon.type === "grass") {
          typeIcon.src = "https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png"

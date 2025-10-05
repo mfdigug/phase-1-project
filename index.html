@@ -29,7 +29,7 @@
             </ul>
         </div>
 
-        <div id="pokemon-card">
+        <div id="pokemon-card" class="hidden">
             <p id="welcome-message">Welcome to the world of Pokemon</p>
             <div id="pokemon-card-header">
                 <img id="type-icon" class="hidden">
@@ -39,22 +39,19 @@
             </div>
             
             <img id="display-pokemon-img" class="hidden" src="" alt="">
-            <div id="pokemon-id"></div>
-            <div id="pokemon-type"></div>
-            <div id="specifications">  ht: 0.7m wt: 6.9kg</div>
-            <div id="stats-list">
-                hp: 45
-                attack: 49
-                defense: 49
-                speed: 45
+            
+            <div id="specifications" class="hidden">  
+                <span id="pokemon-id"></span>
+                <span id="pokemon-type"></span>
+                <span id="pokemon-height"></span>
+                <span id="pokemon-weight"></span>
+                
+            <div id="stats-list" class="hidden">
             </div>
-            <div id="attack-list">
-                attack1: Tackle,
-                attack1 type: normal
-                attack1 power: 40
-                attack2: Vine Whip
-                attack2 type: grass
-                attack2 power: 45
+
+            <div id="attack-list" class="hidden">
+                <div id="attack1"></div>
+                <div id="attack2"></div> 
             </div>
         
             <div class="error">
