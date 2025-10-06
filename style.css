@@ -95,6 +95,10 @@ nav button:hover {
     color: rgb(228, 216, 216);;
 }
 
+#all {
+    background: black;
+}
+
 #grass {
     background: linear-gradient(to top, rgb(2, 43, 8), rgb(148, 251, 184)); 
 }

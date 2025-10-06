@@ -1,7 +1,6 @@
 //variables
 
 const pokemonList = document.querySelector("#pokemon-list")
-
 const welcomeMessage = document.querySelector("#welcome-message")
 
 //pokemon card variables
@@ -23,11 +22,15 @@ const attack1 = document.querySelector("#attack1")
 const attack2 = document.querySelector("#attack2")
 
 //button variables
+const allButton = document.querySelector("#all")
 const fireButton = document.querySelector("#fire")
 const waterButton = document.querySelector("#water")
 const grassButton = document.querySelector("#grass")
 const electricButton = document.querySelector("#electric")
 
+
+//initialise
+fetchAllPokemon();
 
 //display functions
 
@@ -146,6 +149,7 @@ document.addEventListener('keydown', (e) => {
    })
 
 //filter buttons
+allButton.addEventListener('click', (e) => fetchAllPokemon())
 fireButton.addEventListener('click', (e) => fetchPokemonByType(e))
 waterButton.addEventListener('click', (e) => fetchPokemonByType(e))
 grassButton.addEventListener('click', (e) => fetchPokemonByType(e))
@@ -164,11 +168,11 @@ function renderUncaught(pokemonId) {
 
 
 //fetch requests
-
+function fetchAllPokemon() {
 fetch("http://localhost:3000/pokemon")
 .then(res => res.json())
 .then(pokemon => listPokemon(pokemon))
-
+}
 
 function fetchPokemonForDisplay(pokemonId) {
       fetch(`http://localhost:3000/pokemon/${pokemonId}`)
