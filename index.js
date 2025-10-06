@@ -68,7 +68,7 @@ function renderPokemon(displayPokemon) {
 
       //info for display
       pokemonName.innerText = displayPokemon.name;
-      pokemonId.innerText = "No: " + displayPokemon.id; 
+      pokemonId.innerText = displayPokemon.id; 
       pokemonType.innerText = "Type: " + displayPokemon.type;
       pokemonHeight.innerText = "Ht: " + displayPokemon.ht;
       pokemonWeight.innerText = "Wt: " + displayPokemon.wt;
@@ -126,15 +126,22 @@ function handleSubmitNewPokemon(e){
 
 //eventListeners
 
+//using up and down arrow keys
 let id = 0;
-//arrow keys
 document.addEventListener('keydown', (e) => {
-      if (e.key === "ArrowDown") {   
+      if (pokemonId.innerText <= 0) {
+         pokemonId.innerText = 1
+         fetchPokemonForDisplay(id)
+      } else if (e.key === "ArrowDown") {   
+         id = parseInt(pokemonId.innerText, 10)
          id += 1;
-         fetchPokemonForDisplay(id)
+         pokemonId.innerText = id;
+         fetchPokemonForDisplay(pokemonId.innerText)   
       } else if (e.key === "ArrowUp") {
+         id = parseInt(pokemonId.innerText, 10)
          id -= 1;
-         fetchPokemonForDisplay(id)
+         pokemonId.innerText = id;
+         fetchPokemonForDisplay(pokemonId.innerText)   
       }  
    })
 
