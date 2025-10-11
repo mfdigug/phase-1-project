@@ -197,6 +197,12 @@
       "attack2": "Thunder",
       "attack2 type": "electric",
       "attack2 power": 110
+    },
+    {
+      "id": "10",
+      "name": "Caterpie",
+      "type": "grass",
+      "img": "https://img.pokemondb.net/artwork/large/caterpie.jpg"
     }
   ]
 }

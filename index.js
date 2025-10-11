@@ -1,5 +1,9 @@
 //variables
+const allPokemon = []
+//fetch data variables
 
+
+//display variables
 const pokemonList = document.querySelector("#pokemon-list")
 const welcomeMessage = document.querySelector("#welcome-message")
 
@@ -54,7 +58,7 @@ function renderPokemon(displayPokemon) {
   
    //css style changes
       error.classList.add('hidden')
-      welcomeMessage.innerHTML = "";
+      welcomeMessage.classList.add('hidden');
       pokemonCard.classList.remove('initial-render')
       pokemonCard.classList.remove('hidden')
       pokemonCard.classList.add('pokemon-card')
@@ -86,20 +90,36 @@ function renderPokemon(displayPokemon) {
       attack1.innerText = displayPokemon.attack1
       attack2.innerText = displayPokemon.attack2
 
+
+
+
       if(displayPokemon.type === "grass") {
-         typeIcon.src = "https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png"
+         pokemonCard.style.backgroundColor = "#a8fd9dff";
+         pokemonImg.style.border = "5px solid green";
+         attacks.style.backgroundColor = "green"
+         typeIcon.src = "https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png";
       } else if (displayPokemon.type === "fire") {
+         pokemonCard.style.backgroundColor = "#f68080ff";
+         pokemonImg.style.border = "5px solid red";
+         attacks.style.backgroundColor = "red"
          typeIcon.src = "https://archives.bulbagarden.net/media/upload/a/ad/Fire-attack.png"
 
       } else if (displayPokemon.type === "water") {
+         pokemonCard.style.backgroundColor = "#a9deffff";
+         pokemonImg.style.border = "5px solid blue";
+         attacks.style.backgroundColor = "blue";
          typeIcon.src = "https://archives.bulbagarden.net/media/upload/thumb/1/11/Water-attack.png/40px-Water-attack.png"
       } else if (displayPokemon.type === "electric") {
+         pokemonCard.style.backgroundColor = "#f3f592ff";
+         pokemonImg.style.border = "5px solid #c4c709ff";
+         attacks.style.backgroundColor = "#c4c709ff";
          typeIcon.src = "https://archives.bulbagarden.net/media/upload/0/04/Lightning-attack.png"
       }
 
 
 };
 
+//populate sidebar pokemon list
 function updatePokemonList(pokemon) {
    pokemonList.innerText = "";
    for (let i = 0; i < pokemon.length; i++) {
@@ -134,7 +154,7 @@ let id = 0;
 document.addEventListener('keydown', (e) => {
       if (pokemonId.innerText <= 0) {
          pokemonId.innerText = 1
-         fetchPokemonForDisplay(id)
+         fetchPokemonForDisplay(pokemonId.innerText)
       } else if (e.key === "ArrowDown") {   
          id = parseInt(pokemonId.innerText, 10)
          id += 1;
@@ -169,9 +189,9 @@ function renderUncaught(pokemonId) {
 
 //fetch requests
 function fetchAllPokemon() {
-fetch("http://localhost:3000/pokemon")
+fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
 .then(res => res.json())
-.then(pokemon => listPokemon(pokemon))
+.then(data => console.log(data.results))
 }
 
 function fetchPokemonForDisplay(pokemonId) {
