@@ -1,5 +1,5 @@
 //variables
-const allPokemon = []
+let allPokemon = []
 //fetch data variables
 
 
@@ -38,18 +38,21 @@ fetchAllPokemon();
 
 //display functions
 
-function listPokemon(pokemon) {
+function listPokemon(allPokemon) {
+   console.log(allPokemon)
    pokemonCard.classList.add('initial-render');
    header.classList.add('hidden')
    error.classList.add('hidden')
-   for (let i = 0; i < pokemon.length; i++) {
+   for (let i = 0; i < allPokemon.length; i++) {
+      
       const li = document.createElement("li");
-      li.innerText = pokemon[i].name;
-      li.dataset.id = pokemon[i].id
+      li.innerText = allPokemon[i].name;
+      li.dataset.id = allPokemon[i].id
       pokemonList.appendChild(li);
       
       li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id)
-   )}
+      )
+   }
 
 }
    
@@ -191,7 +194,10 @@ function renderUncaught(pokemonId) {
 function fetchAllPokemon() {
 fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
 .then(res => res.json())
-.then(data => console.log(data.results))
+.then(data => {
+   allPokemon = data.results;
+   listPokemon(allPokemon)
+})
 }
 
 function fetchPokemonForDisplay(pokemonId) {
