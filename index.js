@@ -9,21 +9,7 @@ const welcomeMessageContainer = document.querySelector(".welcome-message-contain
 
 //pokemon card variables
 const pokemonCard = document.querySelector("#pokemon-card")
-// const header = document.querySelector('#pokemon-card-header')
-// const typeIcon = document.querySelector('#type-icon')
-// const pokemonImg = document.querySelector("#display-pokemon-img")
-// const error = document.querySelector(".error")
 const form = document.querySelector("form")
-// const pokemonName = document.querySelector("#pokemon-name")
-// const pokemonId = document.querySelector("#pokemon-id")
-// const pokemonType = document.querySelector("#pokemon-type")
-// const pokemonHeight = document.querySelector("#pokemon-height")
-// const pokemonWeight = document.querySelector("#pokemon-weight")
-// const specifications = document.querySelector('#specifications')
-// const stats = document.querySelector('#stats-list')
-// const attacks = document.querySelector("#attack-list")
-// const attack1 = document.querySelector("#attack1")
-// const attack2 = document.querySelector("#attack2")
 
 //button variables
 const allButton = document.querySelector("#all")
@@ -37,7 +23,6 @@ const electricButton = document.querySelector("#electric")
 fetchAllPokemon();
 
 //display functions
-
 function listPokemon(allPokemon) {
    welcomeMessageContainer.innerHTML = `<p class="welcome-message"> 
    Welcome to the world of Pokemon! 
@@ -61,31 +46,26 @@ function renderPokemon(displayPokemon) {
 
 
    // css style changes
-   
    welcomeMessageContainer.classList.add('hidden');
    pokemonCard.classList.remove('hidden')
-     pokemonCard.classList.add('pokemon-card')
-   //   header.classList.remove('hidden')
-   //   pokemonImg.classList.remove('hidden')
-   //   typeIcon.classList.remove('hidden')
-   //   specifications.classList.remove('hidden')
-   //   specifications.classList.add('specifications')
-   //   stats.classList.remove('hidden')
-   //   stats.classList.add('stats-list')
-   //   attacks.classList.remove('hidden')
-   //   attacks.classList.add('attack-list')
+   pokemonCard.classList.add('pokemon-card')
+
+   //pokemon card content
    pokemonCard.innerHTML = `
       <div id="pokemon-card-header">
-      <img id="type-icon" src = "https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png">
-      <h2 id="pokemon-name"> ${displayPokemon.name}
-      </h2>
+      <div id="type-icon"></div>
+      <h2 id="pokemon-name"> ${displayPokemon.name}</h2>
       </div>
+
       <img id="display-pokemon-img" src="${displayPokemon.sprites.front_default}" alt="">
+
       <div id="specifications">
       No: ${displayPokemon.id}
+      Type: ${displayPokemon.types[0].type.name}
       Ht: ${displayPokemon.height/10}m
       Wt: ${displayPokemon.wight/10}kg
       </div>
+
       <div id="stats-list">
       hp: ${displayPokemon.stats[0].base_stat} <br>
       attack: ${displayPokemon.stats[1].base_stat} <br>
@@ -96,51 +76,22 @@ function renderPokemon(displayPokemon) {
       ${displayPokemon.moves[0].move.name}
       ${displayPokemon.moves[1].move.name}
       </div>
-
-
    `
-   
-   
-      
-
-   //    //info for display
-   //    pokemonName.innerText = displayPokemon.name;
-   //    pokemonId.innerText = displayPokemon.id; 
-   //   // pokemonType.innerText = "Types: " + displayPokemon.types;
-   //    pokemonHeight.innerText = "Ht: " + displayPokemon.height/10 + "m";
-   //    pokemonWeight.innerText = "Wt: " + displayPokemon.weight/10 + "kg";
-   //    pokemonImg.src = displayPokemon.sprites.front_default
-
-   //    stats.innerHTML = `
-   //    <div>hp: ${displayPokemon.stats[0].base_stat}</div>
-   //    <div>attack: ${displayPokemon.stats[1].base_stat}</div>
-   //    <div>defense: ${displayPokemon.stats[2].base_stat}</div>
-   //    <div>speed: ${displayPokemon.stats[5].base_stat}</div>
-   //    `
-   //    attack1.innerText = 
-   //    attack2.innerText = ;
-
-
-
-
-      // if(displayPokemon.types[0].type.name === "grass") {
-      //    pokemonCard.style.backgroundColor = "#a8fd9dff";
-      //    attacks.style.backgroundColor = "green"
-      //    typeIcon.src = "https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png";
-      // } else if (displayPokemon.type === "fire") {
-      //    pokemonCard.style.backgroundColor = "#f68080ff";
-      //    attacks.style.backgroundColor = "red"
-      //    typeIcon.src = "https://archives.bulbagarden.net/media/upload/a/ad/Fire-attack.png"
-
-      // } else if (displayPokemon.type === "water") {
-      //    pokemonCard.style.backgroundColor = "#a9deffff";
-      //    attacks.style.backgroundColor = "blue";
-      //    typeIcon.src = "https://archives.bulbagarden.net/media/upload/thumb/1/11/Water-attack.png/40px-Water-attack.png"
-      // } else if (displayPokemon.type === "electric") {
-      //    pokemonCard.style.backgroundColor = "#f3f592ff";
-      //    attacks.style.backgroundColor = "#c4c709ff";
-      //    typeIcon.src = "https://archives.bulbagarden.net/media/upload/0/04/Lightning-attack.png"
-      // }
+   if(displayPokemon.types[0].type.name === "grass"){
+      pokemonCard.classList.add('grass-type')
+      document.querySelector("#type-icon").classList.add('grass-icon')
+   } else if(displayPokemon.types[0].type.name === "fire"){
+      pokemonCard.classList.add('fire-type')
+      document.querySelector("#type-icon").classList.add('fire-icon')
+   } else if(displayPokemon.types[0].type.name === "water"){
+      pokemonCard.classList.add('water-type')
+      document.querySelector("#type-icon").classList.add('water-icon')
+   } else if(displayPokemon.types[0].type.name === "electric"){
+      pokemonCard.classList.add('electric-type')
+      document.querySelector("#type-icon").classList.add('electric-icon')
+   } else {
+      pokemonCard.classList.add('pokemon-card')
+   }
 
 
 };

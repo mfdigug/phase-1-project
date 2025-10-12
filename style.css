@@ -169,9 +169,8 @@ li {
 
 .pokemon-card{
     grid-area: "pc";
-    border: 5px solid rgb(255, 0, 0);
-    background-color: rgb(255, 255, 255);
-    display: flex;
+    /* border: 5px solid rgb(255, 0, 0);
+    background-color: rgb(255, 255, 255); */
     flex-direction: column;
     justify-content: space-evenly;
     width: 100%;
@@ -182,8 +181,30 @@ li {
     
 }
 
+.grass-type {
+    border: 5px solid rgb(7, 181, 65);
+    background-color: rgb(143, 241, 166);
+}
+
+.fire-type {
+    border: 5px solid rgb(254, 3, 3);
+    background-color: rgb(255, 195, 195);
+}
+
+.water-type {
+    border: 5px solid rgb(0, 8, 158);
+    background-color: rgb(154, 208, 255);
+}
+
+.electric-type {
+    border: 5px solid rgb(212, 220, 0);
+    background-color: rgb(252, 255, 176);
+}
+
+
 #pokemon-card-header {
-    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
     white-space: nowrap;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
@@ -191,15 +212,38 @@ li {
     padding: 5px;
 }
 
-h2 {
-    color: rgb(0, 0, 0);
-    font-size: 2rem;
-    display: inline-block;
-}
 
 #type-icon {
-    height: 2em;
+    height: 30px;   
+} 
+
+.grass-icon {
+    background-image: url(https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
+
+.fire-icon {
+    background-image: url(https://archives.bulbagarden.net/media/upload/a/ad/Fire-attack.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.water-icon {
+    background-image: url(https://archives.bulbagarden.net/media/upload/1/11/Water-attack.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.electric-icon {
+    background-image: url(https://archives.bulbagarden.net/media/upload/0/04/Lightning-attack.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+
+
 
 #display-pokemon-img {
     height: 8em;
@@ -214,7 +258,6 @@ h2 {
     font-size: 0.6em;
     font-style: oblique;
     font-weight: bold;
-    width: 100%;
     padding: 2px
 }
 
@@ -232,25 +275,10 @@ h2 {
     font-size: large;
     font-style: italic;
     font-weight: bolder;
-    color:antiquewhite;
+    color:rgb(30, 30, 30);
     border: 2px solid black;
     padding: 5px;
 }
-
-
-/* .error {
-    border: 5px solid rgb(255, 0, 0);
-    background-color: rgb(0, 0, 0);
-    color: white;
-    padding-top: 50px;
-    padding-left: 50px;
-    font-size: 1.5rem;
-    position: absolute;
-    top: 45px;
-    right: 135px;    
-    height: 50%;
-    width: 50%;
-} */
 
 
 footer {
