@@ -43,7 +43,6 @@ function listPokemon(allPokemon) {
    header.classList.add('hidden')
    error.classList.add('hidden')
    for (let i = 0; i < allPokemon.length; i++) {
-      console.log(allPokemon[i])
       const li = document.createElement("li");
       li.innerText = allPokemon[i].name;
       li.dataset.url = allPokemon[i].url;
@@ -60,65 +59,61 @@ function renderPokemon(displayPokemon) {
   console.log(displayPokemon)
 
 
-   // //css style changes
-   //    error.classList.add('hidden')
-   //    welcomeMessage.classList.add('hidden');
-   //    pokemonCard.classList.remove('initial-render')
-   //    pokemonCard.classList.remove('hidden')
-   //    pokemonCard.classList.add('pokemon-card')
-   //    header.classList.remove('hidden')
-   //    pokemonImg.classList.remove('hidden')
-   //    typeIcon.classList.remove('hidden')
-   //    specifications.classList.remove('hidden')
-   //    specifications.classList.add('specifications')
-   //    stats.classList.remove('hidden')
-   //    stats.classList.add('stats-list')
-   //    attacks.classList.remove('hidden')
-   //    attacks.classList.add('attack-list')
+   // css style changes
+   error.classList.add('hidden')
+   welcomeMessage.classList.add('hidden');
+   pokemonCard.classList.remove('initial-render')
+   pokemonCard.classList.remove('hidden')
+     pokemonCard.classList.add('pokemon-card')
+     header.classList.remove('hidden')
+     pokemonImg.classList.remove('hidden')
+     typeIcon.classList.remove('hidden')
+     specifications.classList.remove('hidden')
+     specifications.classList.add('specifications')
+     stats.classList.remove('hidden')
+     stats.classList.add('stats-list')
+     attacks.classList.remove('hidden')
+     attacks.classList.add('attack-list')
 
 
-   //    //info for display
-   //    pokemonName.innerText = displayPokemon.name;
-   //    pokemonId.innerText = displayPokemon.id; 
-   //    pokemonType.innerText = "Type: " + displayPokemon.type;
-   //    pokemonHeight.innerText = "Ht: " + displayPokemon.ht;
-   //    pokemonWeight.innerText = "Wt: " + displayPokemon.wt;
-   //    pokemonImg.src = displayPokemon.img
+      //info for display
+      pokemonName.innerText = displayPokemon.name;
+      pokemonId.innerText = displayPokemon.id; 
+     // pokemonType.innerText = "Types: " + displayPokemon.types;
+      pokemonHeight.innerText = "Ht: " + displayPokemon.height/10 + "m";
+      pokemonWeight.innerText = "Wt: " + displayPokemon.weight/10 + "kg";
+      pokemonImg.src = displayPokemon.sprites.front_default
 
-   //    stats.innerHTML = `
-   //    <div>hp: ${displayPokemon.hp}</div>
-   //    <div>attack: ${displayPokemon.attack}</div>
-   //    <div>defense: ${displayPokemon.defense}</div>
-   //    <div>speed: ${displayPokemon.speed}</div>
-   //    `
-   //    attack1.innerText = displayPokemon.attack1
-   //    attack2.innerText = displayPokemon.attack2
-
-
+      stats.innerHTML = `
+      <div>hp: ${displayPokemon.stats[0].base_stat}</div>
+      <div>attack: ${displayPokemon.stats[1].base_stat}</div>
+      <div>defense: ${displayPokemon.stats[2].base_stat}</div>
+      <div>speed: ${displayPokemon.stats[5].base_stat}</div>
+      `
+      attack1.innerText = displayPokemon.moves[0].move.name;
+      attack2.innerText = displayPokemon.moves[1].move.name;
 
 
-   //    if(displayPokemon.type === "grass") {
-   //       pokemonCard.style.backgroundColor = "#a8fd9dff";
-   //       pokemonImg.style.border = "5px solid green";
-   //       attacks.style.backgroundColor = "green"
-   //       typeIcon.src = "https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png";
-   //    } else if (displayPokemon.type === "fire") {
-   //       pokemonCard.style.backgroundColor = "#f68080ff";
-   //       pokemonImg.style.border = "5px solid red";
-   //       attacks.style.backgroundColor = "red"
-   //       typeIcon.src = "https://archives.bulbagarden.net/media/upload/a/ad/Fire-attack.png"
 
-   //    } else if (displayPokemon.type === "water") {
-   //       pokemonCard.style.backgroundColor = "#a9deffff";
-   //       pokemonImg.style.border = "5px solid blue";
-   //       attacks.style.backgroundColor = "blue";
-   //       typeIcon.src = "https://archives.bulbagarden.net/media/upload/thumb/1/11/Water-attack.png/40px-Water-attack.png"
-   //    } else if (displayPokemon.type === "electric") {
-   //       pokemonCard.style.backgroundColor = "#f3f592ff";
-   //       pokemonImg.style.border = "5px solid #c4c709ff";
-   //       attacks.style.backgroundColor = "#c4c709ff";
-   //       typeIcon.src = "https://archives.bulbagarden.net/media/upload/0/04/Lightning-attack.png"
-   //    }
+
+      if(displayPokemon.types[0].type.name === "grass") {
+         pokemonCard.style.backgroundColor = "#a8fd9dff";
+         attacks.style.backgroundColor = "green"
+         typeIcon.src = "https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png";
+      } else if (displayPokemon.type === "fire") {
+         pokemonCard.style.backgroundColor = "#f68080ff";
+         attacks.style.backgroundColor = "red"
+         typeIcon.src = "https://archives.bulbagarden.net/media/upload/a/ad/Fire-attack.png"
+
+      } else if (displayPokemon.type === "water") {
+         pokemonCard.style.backgroundColor = "#a9deffff";
+         attacks.style.backgroundColor = "blue";
+         typeIcon.src = "https://archives.bulbagarden.net/media/upload/thumb/1/11/Water-attack.png/40px-Water-attack.png"
+      } else if (displayPokemon.type === "electric") {
+         pokemonCard.style.backgroundColor = "#f3f592ff";
+         attacks.style.backgroundColor = "#c4c709ff";
+         typeIcon.src = "https://archives.bulbagarden.net/media/upload/0/04/Lightning-attack.png"
+      }
 
 
 };
@@ -203,13 +198,8 @@ fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
 
 function fetchPokemonForDisplay(displayPokemonURL) {
       fetch(`${displayPokemonURL}`)
-      .then(res => {
-         // if(res.status !== 200) 
-         //    { renderUncaught(pokemonId) }
-            return res.json()
-      })
+      .then(res => res.json())
       .then(displayPokemon => renderPokemon(displayPokemon))
-      //.catch(err => console.log(err))
 }
 
 function fetchPokemonByType(e) {
