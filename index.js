@@ -9,21 +9,21 @@ const welcomeMessageContainer = document.querySelector(".welcome-message-contain
 
 //pokemon card variables
 const pokemonCard = document.querySelector("#pokemon-card")
-const header = document.querySelector('#pokemon-card-header')
-const typeIcon = document.querySelector('#type-icon')
-const pokemonImg = document.querySelector("#display-pokemon-img")
-const error = document.querySelector(".error")
+// const header = document.querySelector('#pokemon-card-header')
+// const typeIcon = document.querySelector('#type-icon')
+// const pokemonImg = document.querySelector("#display-pokemon-img")
+// const error = document.querySelector(".error")
 const form = document.querySelector("form")
-const pokemonName = document.querySelector("#pokemon-name")
-const pokemonId = document.querySelector("#pokemon-id")
-const pokemonType = document.querySelector("#pokemon-type")
-const pokemonHeight = document.querySelector("#pokemon-height")
-const pokemonWeight = document.querySelector("#pokemon-weight")
-const specifications = document.querySelector('#specifications')
-const stats = document.querySelector('#stats-list')
-const attacks = document.querySelector("#attack-list")
-const attack1 = document.querySelector("#attack1")
-const attack2 = document.querySelector("#attack2")
+// const pokemonName = document.querySelector("#pokemon-name")
+// const pokemonId = document.querySelector("#pokemon-id")
+// const pokemonType = document.querySelector("#pokemon-type")
+// const pokemonHeight = document.querySelector("#pokemon-height")
+// const pokemonWeight = document.querySelector("#pokemon-weight")
+// const specifications = document.querySelector('#specifications')
+// const stats = document.querySelector('#stats-list')
+// const attacks = document.querySelector("#attack-list")
+// const attack1 = document.querySelector("#attack1")
+// const attack2 = document.querySelector("#attack2")
 
 //button variables
 const allButton = document.querySelector("#all")
@@ -61,38 +61,64 @@ function renderPokemon(displayPokemon) {
 
 
    // css style changes
-   error.classList.add('hidden')
-   welcomeMessage.classList.add('hidden');
-   pokemonCard.classList.remove('initial-render')
+   
+   welcomeMessageContainer.classList.add('hidden');
    pokemonCard.classList.remove('hidden')
      pokemonCard.classList.add('pokemon-card')
-     header.classList.remove('hidden')
-     pokemonImg.classList.remove('hidden')
-     typeIcon.classList.remove('hidden')
-     specifications.classList.remove('hidden')
-     specifications.classList.add('specifications')
-     stats.classList.remove('hidden')
-     stats.classList.add('stats-list')
-     attacks.classList.remove('hidden')
-     attacks.classList.add('attack-list')
+   //   header.classList.remove('hidden')
+   //   pokemonImg.classList.remove('hidden')
+   //   typeIcon.classList.remove('hidden')
+   //   specifications.classList.remove('hidden')
+   //   specifications.classList.add('specifications')
+   //   stats.classList.remove('hidden')
+   //   stats.classList.add('stats-list')
+   //   attacks.classList.remove('hidden')
+   //   attacks.classList.add('attack-list')
+   pokemonCard.innerHTML = `
+      <div id="pokemon-card-header">
+      <img id="type-icon" src = "https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png">
+      <h2 id="pokemon-name"> ${displayPokemon.name}
+      </h2>
+      </div>
+      <img id="display-pokemon-img" src="${displayPokemon.sprites.front_default}" alt="">
+      <div id="specifications">
+      No: ${displayPokemon.id}
+      Ht: ${displayPokemon.height/10}m
+      Wt: ${displayPokemon.wight/10}kg
+      </div>
+      <div id="stats-list">
+      hp: ${displayPokemon.stats[0].base_stat} <br>
+      attack: ${displayPokemon.stats[1].base_stat} <br>
+      defense: ${displayPokemon.stats[2].base_stat} <br>
+      speed: ${displayPokemon.stats[5].base_stat} <br>
+      </div>
+      <div id="attack-list">
+      ${displayPokemon.moves[0].move.name}
+      ${displayPokemon.moves[1].move.name}
+      </div>
 
 
-      //info for display
-      pokemonName.innerText = displayPokemon.name;
-      pokemonId.innerText = displayPokemon.id; 
-     // pokemonType.innerText = "Types: " + displayPokemon.types;
-      pokemonHeight.innerText = "Ht: " + displayPokemon.height/10 + "m";
-      pokemonWeight.innerText = "Wt: " + displayPokemon.weight/10 + "kg";
-      pokemonImg.src = displayPokemon.sprites.front_default
+   `
+   
+   
+      
 
-      stats.innerHTML = `
-      <div>hp: ${displayPokemon.stats[0].base_stat}</div>
-      <div>attack: ${displayPokemon.stats[1].base_stat}</div>
-      <div>defense: ${displayPokemon.stats[2].base_stat}</div>
-      <div>speed: ${displayPokemon.stats[5].base_stat}</div>
-      `
-      attack1.innerText = displayPokemon.moves[0].move.name;
-      attack2.innerText = displayPokemon.moves[1].move.name;
+   //    //info for display
+   //    pokemonName.innerText = displayPokemon.name;
+   //    pokemonId.innerText = displayPokemon.id; 
+   //   // pokemonType.innerText = "Types: " + displayPokemon.types;
+   //    pokemonHeight.innerText = "Ht: " + displayPokemon.height/10 + "m";
+   //    pokemonWeight.innerText = "Wt: " + displayPokemon.weight/10 + "kg";
+   //    pokemonImg.src = displayPokemon.sprites.front_default
+
+   //    stats.innerHTML = `
+   //    <div>hp: ${displayPokemon.stats[0].base_stat}</div>
+   //    <div>attack: ${displayPokemon.stats[1].base_stat}</div>
+   //    <div>defense: ${displayPokemon.stats[2].base_stat}</div>
+   //    <div>speed: ${displayPokemon.stats[5].base_stat}</div>
+   //    `
+   //    attack1.innerText = 
+   //    attack2.innerText = ;
 
 
 

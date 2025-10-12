@@ -6,10 +6,6 @@ font-family: 'Courier New', Courier, monospace;
 }
 
 
-.hidden {
-    display: none;
-}
-
 /* added typewriter effect */
 .welcome-message-container {
     grid-area: "pc";
@@ -32,7 +28,9 @@ font-family: 'Courier New', Courier, monospace;
         blink-caret 0.75s step-end infinite;
 }
 
-
+.hidden {
+    display: none;
+}
 
 
 
