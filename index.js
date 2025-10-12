@@ -12,11 +12,11 @@ const pokemonCard = document.querySelector("#pokemon-card")
 const form = document.querySelector("form")
 
 //button variables
-const allButton = document.querySelector("#all")
-const fireButton = document.querySelector("#fire")
-const waterButton = document.querySelector("#water")
-const grassButton = document.querySelector("#grass")
-const electricButton = document.querySelector("#electric")
+// const allButton = document.querySelector("#all")
+// const fireButton = document.querySelector("#fire")
+// const waterButton = document.querySelector("#water")
+// const grassButton = document.querySelector("#grass")
+// const electricButton = document.querySelector("#electric")
 
 
 //initialise
@@ -24,6 +24,8 @@ fetchAllPokemon();
 
 //display functions
 function listPokemon(allPokemon) {
+   console.log(allPokemon)
+   
    welcomeMessageContainer.innerHTML = `<p class="welcome-message"> 
    Welcome to the world of Pokemon! 
    </p>`
@@ -42,14 +44,17 @@ function listPokemon(allPokemon) {
    
 
 function renderPokemon(displayPokemon) {
-  console.log(displayPokemon)
-
-
-   // css style changes
+   
+   //clear type classes from previous renders
+   pokemonCard.classList.remove('normal', 'water', 'fire', 'electric', 'grass', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy');
+   //new variables
+   let pokemonType1 = displayPokemon.types[0].type.name;
+   //css changes
    welcomeMessageContainer.classList.add('hidden');
    pokemonCard.classList.remove('hidden')
    pokemonCard.classList.add('pokemon-card')
-
+   pokemonCard.classList.add(pokemonType1) 
+  
    //pokemon card content
    pokemonCard.innerHTML = `
       <div id="pokemon-card-header">
@@ -57,13 +62,13 @@ function renderPokemon(displayPokemon) {
       <h2 id="pokemon-name"> ${displayPokemon.name}</h2>
       </div>
 
-      <img id="display-pokemon-img" src="${displayPokemon.sprites.front_default}" alt="">
+      <img id="display-pokemon-img" src="${displayPokemon.sprites.front_default}">
 
       <div id="specifications">
       No: ${displayPokemon.id}
-      Type: ${displayPokemon.types[0].type.name}
+      Type: ${pokemonType1}
       Ht: ${displayPokemon.height/10}m
-      Wt: ${displayPokemon.wight/10}kg
+      Wt: ${displayPokemon.weight/10}kg
       </div>
 
       <div id="stats-list">
@@ -72,28 +77,12 @@ function renderPokemon(displayPokemon) {
       defense: ${displayPokemon.stats[2].base_stat} <br>
       speed: ${displayPokemon.stats[5].base_stat} <br>
       </div>
+
       <div id="attack-list">
       ${displayPokemon.moves[0].move.name}
       ${displayPokemon.moves[1].move.name}
       </div>
    `
-   if(displayPokemon.types[0].type.name === "grass"){
-      pokemonCard.classList.add('grass-type')
-      document.querySelector("#type-icon").classList.add('grass-icon')
-   } else if(displayPokemon.types[0].type.name === "fire"){
-      pokemonCard.classList.add('fire-type')
-      document.querySelector("#type-icon").classList.add('fire-icon')
-   } else if(displayPokemon.types[0].type.name === "water"){
-      pokemonCard.classList.add('water-type')
-      document.querySelector("#type-icon").classList.add('water-icon')
-   } else if(displayPokemon.types[0].type.name === "electric"){
-      pokemonCard.classList.add('electric-type')
-      document.querySelector("#type-icon").classList.add('electric-icon')
-   } else {
-      pokemonCard.classList.add('pokemon-card')
-   }
-
-
 };
 
 //populate sidebar pokemon list
@@ -146,11 +135,11 @@ document.addEventListener('keydown', (e) => {
    })
 
 //filter buttons
-allButton.addEventListener('click', (e) => fetchAllPokemon())
-fireButton.addEventListener('click', (e) => fetchPokemonByType(e))
-waterButton.addEventListener('click', (e) => fetchPokemonByType(e))
-grassButton.addEventListener('click', (e) => fetchPokemonByType(e))
-electricButton.addEventListener('click', (e) => fetchPokemonByType(e))
+// allButton.addEventListener('click', (e) => fetchAllPokemon())
+// fireButton.addEventListener('click', (e) => fetchPokemonByType(e))
+// waterButton.addEventListener('click', (e) => fetchPokemonByType(e))
+// grassButton.addEventListener('click', (e) => fetchPokemonByType(e))
+// electricButton.addEventListener('click', (e) => fetchPokemonByType(e))
 
 //form submission
 form.addEventListener('submit', (e) => handleSubmitNewPokemon(e))
