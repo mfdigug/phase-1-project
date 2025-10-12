@@ -5,7 +5,7 @@ let allPokemon = []
 
 //display variables
 const pokemonList = document.querySelector("#pokemon-list")
-const welcomeMessage = document.querySelector("#welcome-message")
+const welcomeMessageContainer = document.querySelector(".welcome-message-container")
 
 //pokemon card variables
 const pokemonCard = document.querySelector("#pokemon-card")
@@ -39,9 +39,10 @@ fetchAllPokemon();
 //display functions
 
 function listPokemon(allPokemon) {
-   pokemonCard.classList.add('initial-render');
-   header.classList.add('hidden')
-   error.classList.add('hidden')
+   welcomeMessageContainer.innerHTML = `<p class="welcome-message"> 
+   Welcome to the world of Pokemon! 
+   </p>`
+
    for (let i = 0; i < allPokemon.length; i++) {
       const li = document.createElement("li");
       li.innerText = allPokemon[i].name;
@@ -96,24 +97,24 @@ function renderPokemon(displayPokemon) {
 
 
 
-      if(displayPokemon.types[0].type.name === "grass") {
-         pokemonCard.style.backgroundColor = "#a8fd9dff";
-         attacks.style.backgroundColor = "green"
-         typeIcon.src = "https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png";
-      } else if (displayPokemon.type === "fire") {
-         pokemonCard.style.backgroundColor = "#f68080ff";
-         attacks.style.backgroundColor = "red"
-         typeIcon.src = "https://archives.bulbagarden.net/media/upload/a/ad/Fire-attack.png"
+      // if(displayPokemon.types[0].type.name === "grass") {
+      //    pokemonCard.style.backgroundColor = "#a8fd9dff";
+      //    attacks.style.backgroundColor = "green"
+      //    typeIcon.src = "https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png";
+      // } else if (displayPokemon.type === "fire") {
+      //    pokemonCard.style.backgroundColor = "#f68080ff";
+      //    attacks.style.backgroundColor = "red"
+      //    typeIcon.src = "https://archives.bulbagarden.net/media/upload/a/ad/Fire-attack.png"
 
-      } else if (displayPokemon.type === "water") {
-         pokemonCard.style.backgroundColor = "#a9deffff";
-         attacks.style.backgroundColor = "blue";
-         typeIcon.src = "https://archives.bulbagarden.net/media/upload/thumb/1/11/Water-attack.png/40px-Water-attack.png"
-      } else if (displayPokemon.type === "electric") {
-         pokemonCard.style.backgroundColor = "#f3f592ff";
-         attacks.style.backgroundColor = "#c4c709ff";
-         typeIcon.src = "https://archives.bulbagarden.net/media/upload/0/04/Lightning-attack.png"
-      }
+      // } else if (displayPokemon.type === "water") {
+      //    pokemonCard.style.backgroundColor = "#a9deffff";
+      //    attacks.style.backgroundColor = "blue";
+      //    typeIcon.src = "https://archives.bulbagarden.net/media/upload/thumb/1/11/Water-attack.png/40px-Water-attack.png"
+      // } else if (displayPokemon.type === "electric") {
+      //    pokemonCard.style.backgroundColor = "#f3f592ff";
+      //    attacks.style.backgroundColor = "#c4c709ff";
+      //    typeIcon.src = "https://archives.bulbagarden.net/media/upload/0/04/Lightning-attack.png"
+      // }
 
 
 };
