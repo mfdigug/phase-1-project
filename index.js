@@ -34,11 +34,17 @@ function listPokemon(allPokemon) {
       const li = document.createElement("li");
       li.innerText = allPokemon[i].name;
       li.dataset.url = allPokemon[i].url;
+      li.dataset.id = (i + 1)
       pokemonList.appendChild(li);
       
       li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.url)
       )
    }
+
+   document.addEventListener('keydown', (e) => {
+         console.log(pokemonList)
+      })
+
 
 }
    
@@ -116,23 +122,23 @@ function handleSubmitNewPokemon(e){
 //eventListeners
 
 //using up and down arrow keys
-let id = 0;
-document.addEventListener('keydown', (e) => {
-      if (pokemonId.innerText <= 0) {
-         pokemonId.innerText = 1
-         fetchPokemonForDisplay(pokemonId.innerText)
-      } else if (e.key === "ArrowDown") {   
-         id = parseInt(pokemonId.innerText, 10)
-         id += 1;
-         pokemonId.innerText = id;
-         fetchPokemonForDisplay(pokemonId.innerText)   
-      } else if (e.key === "ArrowUp") {
-         id = parseInt(pokemonId.innerText, 10)
-         id -= 1;
-         pokemonId.innerText = id;
-         fetchPokemonForDisplay(pokemonId.innerText)   
-      }  
-   })
+//let id = 0;
+// document.addEventListener('keydown', (e) => {
+//       if (pokemonId.innerText <= 0) {
+//          pokemonId.innerText = 1
+//          fetchPokemonForDisplay(pokemonId.innerText)
+//       } else if (e.key === "ArrowDown") {   
+//          id = parseInt(pokemonId.innerText, 10)
+//          id += 1;
+//          pokemonId.innerText = id;
+//          fetchPokemonForDisplay(pokemonId.innerText)   
+//       } else if (e.key === "ArrowUp") {
+//          id = parseInt(pokemonId.innerText, 10)
+//          id -= 1;
+//          pokemonId.innerText = id;
+//          fetchPokemonForDisplay(pokemonId.innerText)   
+//       }  
+//    })
 
 //filter buttons
 // allButton.addEventListener('click', (e) => fetchAllPokemon())
