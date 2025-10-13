@@ -130,25 +130,6 @@ function handleSubmitNewPokemon(e){
 
 //eventListeners
 
-//using up and down arrow keys
-//let id = 0;
-// document.addEventListener('keydown', (e) => {
-//       if (pokemonId.innerText <= 0) {
-//          pokemonId.innerText = 1
-//          fetchPokemonForDisplay(pokemonId.innerText)
-//       } else if (e.key === "ArrowDown") {   
-//          id = parseInt(pokemonId.innerText, 10)
-//          id += 1;
-//          pokemonId.innerText = id;
-//          fetchPokemonForDisplay(pokemonId.innerText)   
-//       } else if (e.key === "ArrowUp") {
-//          id = parseInt(pokemonId.innerText, 10)
-//          id -= 1;
-//          pokemonId.innerText = id;
-//          fetchPokemonForDisplay(pokemonId.innerText)   
-//       }  
-//    })
-
 //filter buttons
 // allButton.addEventListener('click', (e) => fetchAllPokemon())
 // fireButton.addEventListener('click', (e) => fetchPokemonByType(e))
