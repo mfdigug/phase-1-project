@@ -1,5 +1,6 @@
 //variables
 let allPokemon = []
+let displayedPokemon
 //fetch data variables
 
 
@@ -41,16 +42,12 @@ function listPokemon(allPokemon) {
       )
    }
 
-   document.addEventListener('keydown', (e) => {
-         console.log(pokemonList)
-      })
-
 
 }
    
 
 function renderPokemon(displayPokemon) {
-   
+   displayedPokemon = displayPokemon
    //clear type classes from previous renders
    pokemonCard.classList.remove('normal', 'water', 'fire', 'electric', 'grass', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy');
    //new variables
@@ -90,6 +87,18 @@ function renderPokemon(displayPokemon) {
       </div>
    `
 };
+
+   document.addEventListener('keydown', (e) => {   
+         if (!displayedPokemon) {
+         fetchPokemonForDisplay(allPokemon[0].url)
+         } else if (displayedPokemon && e.key === "ArrowDown") {
+         let newId = displayedPokemon.id + 1
+         fetchPokemonForDisplay(`https://pokeapi.co/api/v2/pokemon/${newId}`)  
+         } else if (displayedPokemon && e.key === "ArrowUp") {
+         let newId = displayedPokemon.id - 1
+         fetchPokemonForDisplay(`https://pokeapi.co/api/v2/pokemon/${newId}`) 
+         }
+   })
 
 //populate sidebar pokemon list
 function updatePokemonList(pokemon) {
