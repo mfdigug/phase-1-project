@@ -1,6 +1,9 @@
 //variables
 let allPokemon = []
+
 let displayedPokemon
+
+
 //fetch data variables
 
 
@@ -24,36 +27,36 @@ const form = document.querySelector("form")
 fetchAllPokemon();
 
 
-//display functions
-// function listPokemon(allPokemon) {
-
-//   
-
-//     for (let i = 0; i < allPokemon.length; i++) {
-//       const li = document.createElement("li");
-//        li.innerText = allPokemon[i].name;
-//        li.dataset.url = allPokemon[i].url;
-//        li.dataset.id = i + 1;
-//        pokemonList.appendChild(li);
-
-//        li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.url)
-//        )
-//       }
-// }
-
-function listPokemon(pokeData){
+function listPokemon(pokeData) {
    
     welcomeMessageContainer.innerHTML = `<p class="welcome-message"> 
     Welcome to the world of Pokemon! 
     </p>`
 
-   const li = document.createElement("li");
+      const li = document.createElement("li");
         li.innerText = pokeData.name;
         li.dataset.id = pokeData.id;
+        li.dataset.type = pokeData.types[0].type.name
         pokemonList.appendChild(li);
 
         li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
-}
+     }
+
+
+   function listPokemonByType(pokeData) {
+
+       const li = document.createElement("li");
+         li.innerText = pokeData.name;
+         li.dataset.id = pokeData.id;
+         li.dataset.type = pokeData.types[0].type.name
+         pokemonList.appendChild(li);
+
+         li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
+   }
+
+
+
+       
 
 function renderPokemon(displayPokemon) {
     displayedPokemon = displayPokemon
@@ -109,6 +112,13 @@ function renderPokemon(displayPokemon) {
          }
    })
 
+
+   document.getElementById('pokemon-types').addEventListener('change', (e) => {
+      pokemonList.innerHTML = ""
+      fetchPokemonByType(e.target.value)
+   }
+   )
+
 //populate sidebar pokemon list
 // function updatePokemonList(pokemon) {
 //    pokemonList.innerText = "";
@@ -139,10 +149,7 @@ function renderPokemon(displayPokemon) {
 
 //eventListeners
 
-//const dropdown = document.getElementById('pokemon-types').addEventListener('change', (e) => {
-   //let type = e.target.value
-   //fetchPokemonByType(type);
-//})
+
 //filter buttons
 // allButton.addEventListener('click', (e) => fetchAllPokemon())
 //fireButton.addEventListener('click', (e) => console.log(e))
@@ -169,9 +176,7 @@ fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
 .then(data => {
    data.results.forEach(function(pokemon){
     fetchPokemonData(pokemon)
-
-})
-
+   })
 })
 }
 
@@ -180,13 +185,10 @@ function fetchPokemonData(pokemon){
       let url = pokemon.url
     fetch(url)
     .then(res => res.json())
-    .then(function(pokeData) {
-        listPokemon(pokeData)
-        
-  })
-
+    .then(pokeData => {
+      listPokemon(pokeData)
+    })      
 }
-
 
 function fetchPokemonForDisplay(id) {
       fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -194,6 +196,31 @@ function fetchPokemonForDisplay(id) {
       .then(displayPokemon => renderPokemon(displayPokemon))
 }
 
+function fetchPokemonByType(selectedType) {
+   fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
+   .then(res => res.json())
+   .then(data => {
+      data.results.forEach(function(pokemon){
+    fetchPokemonDataByType(pokemon, selectedType)
+   })
+})
+}
+
+function fetchPokemonDataByType(pokemon, selectedType) {
+   let url = pokemon.url
+    fetch(url)
+    .then(res => res.json())
+    .then(pokeData => {
+      if(pokeData.types[0].type.name === selectedType)
+      //console.log(pokeData
+      listPokemonByType(pokeData)
+    })      
+}
+
+
+
+
+
 
 
  
@@ -207,11 +234,6 @@ function fetchPokemonForDisplay(id) {
    
    
  
-         // const pokemonByType = pokemon.filter((pokemon) =>
-         // pokemon.type[0].name === type)
-         // console.log(pokemonByType)
-         //listPokemon(pokemonByType)
-   
 
 
 // function addNewPokemon(newPokemon){
