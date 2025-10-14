@@ -41,21 +41,6 @@ function listPokemon(pokeData) {
 
         li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
      }
-
-
-   function listPokemonByType(pokeData) {
-
-       const li = document.createElement("li");
-         li.innerText = pokeData.name;
-         li.dataset.id = pokeData.id;
-         li.dataset.type = pokeData.types[0].type.name
-         pokemonList.appendChild(li);
-
-         li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
-   }
-
-
-
        
 
 function renderPokemon(displayPokemon) {
@@ -115,8 +100,11 @@ function renderPokemon(displayPokemon) {
 
    document.getElementById('pokemon-types').addEventListener('change', (e) => {
       pokemonList.innerHTML = ""
+      if(e.target.value === "all"){
+         fetchAllPokemon()
+      } else {
       fetchPokemonByType(e.target.value)
-   }
+      }}
    )
 
 //populate sidebar pokemon list
@@ -212,8 +200,7 @@ function fetchPokemonDataByType(pokemon, selectedType) {
     .then(res => res.json())
     .then(pokeData => {
       if(pokeData.types[0].type.name === selectedType)
-      //console.log(pokeData
-      listPokemonByType(pokeData)
+      listPokemon(pokeData)
     })      
 }
 
