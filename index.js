@@ -23,34 +23,43 @@ const form = document.querySelector("form")
 //initialise
 fetchAllPokemon();
 
+
 //display functions
-function listPokemon(allPokemon) {
-   console.log(allPokemon)
+// function listPokemon(allPokemon) {
+
+//   
+
+//     for (let i = 0; i < allPokemon.length; i++) {
+//       const li = document.createElement("li");
+//        li.innerText = allPokemon[i].name;
+//        li.dataset.url = allPokemon[i].url;
+//        li.dataset.id = i + 1;
+//        pokemonList.appendChild(li);
+
+//        li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.url)
+//        )
+//       }
+// }
+
+function listPokemon(pokeData){
    
-   welcomeMessageContainer.innerHTML = `<p class="welcome-message"> 
-   Welcome to the world of Pokemon! 
-   </p>`
+    welcomeMessageContainer.innerHTML = `<p class="welcome-message"> 
+    Welcome to the world of Pokemon! 
+    </p>`
 
-   for (let i = 0; i < allPokemon.length; i++) {
-      const li = document.createElement("li");
-      li.innerText = allPokemon[i].name;
-      li.dataset.url = allPokemon[i].url;
-      li.dataset.id = (i + 1)
-      pokemonList.appendChild(li);
-      
-      li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.url)
-      )
-   }
+   const li = document.createElement("li");
+        li.innerText = pokeData.name;
+        li.dataset.id = pokeData.id;
+        pokemonList.appendChild(li);
 
-
+        li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
 }
-   
 
 function renderPokemon(displayPokemon) {
-   displayedPokemon = displayPokemon
-   //clear type classes from previous renders
-   pokemonCard.classList.remove('normal', 'water', 'fire', 'electric', 'grass', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy');
-   //new variables
+    displayedPokemon = displayPokemon
+    //clear type classes from previous renders
+    pokemonCard.classList.remove('normal', 'water', 'fire', 'electric', 'grass', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy');
+    //new variables
    let pokemonType1 = displayPokemon.types[0].type.name;
    //css changes
    welcomeMessageContainer.classList.add('hidden');
@@ -90,49 +99,53 @@ function renderPokemon(displayPokemon) {
 
    document.addEventListener('keydown', (e) => {   
          if (!displayedPokemon) {
-         fetchPokemonForDisplay(allPokemon[0].url)
+         fetchPokemonForDisplay(1)
          } else if (displayedPokemon && e.key === "ArrowDown") {
          let newId = displayedPokemon.id + 1
-         fetchPokemonForDisplay(`https://pokeapi.co/api/v2/pokemon/${newId}`)  
+         fetchPokemonForDisplay(newId)  
          } else if (displayedPokemon && e.key === "ArrowUp") {
          let newId = displayedPokemon.id - 1
-         fetchPokemonForDisplay(`https://pokeapi.co/api/v2/pokemon/${newId}`) 
+         fetchPokemonForDisplay(newId) 
          }
    })
 
 //populate sidebar pokemon list
-function updatePokemonList(pokemon) {
-   pokemonList.innerText = "";
-   for (let i = 0; i < pokemon.length; i++) {
-   const li = document.createElement("li");
-   li.innerText = pokemon[i].name;
-   li.dataset.id = pokemon[i].id
-   pokemonList.appendChild(li);
+// function updatePokemonList(pokemon) {
+//    pokemonList.innerText = "";
+//    for (let i = 0; i < pokemon.length; i++) {
+//    const li = document.createElement("li");
+//    li.innerText = pokemon[i].name;
+//    li.dataset.id = pokemon[i].id
+//    pokemonList.appendChild(li);
    
-   li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
-   }
-}
+//    li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
+//    }
+// }
 
 
 //catch a new pokemon
-function handleSubmitNewPokemon(e){
-   e.preventDefault();
-   const newPokemon = {
-      "id" : e.target.newPokeId.value,
-      "name" : e.target.newPokeName.value,
-      "type" : e.target.newPokeType.value,
-      "img" : e.target.newPokePic.value
-   }
+// function handleSubmitNewPokemon(e){
+//    e.preventDefault();
+//    const newPokemon = {
+//       "id" : e.target.newPokeId.value,
+//       "name" : e.target.newPokeName.value,
+//       "type" : e.target.newPokeType.value,
+//       "img" : e.target.newPokePic.value
+//    }
 
-   addNewPokemon(newPokemon)
-   renderPokemon(newPokemon)
-}
+//    addNewPokemon(newPokemon)
+//    renderPokemon(newPokemon)
+// }
 
 //eventListeners
 
+//const dropdown = document.getElementById('pokemon-types').addEventListener('change', (e) => {
+   //let type = e.target.value
+   //fetchPokemonByType(type);
+//})
 //filter buttons
 // allButton.addEventListener('click', (e) => fetchAllPokemon())
-// fireButton.addEventListener('click', (e) => fetchPokemonByType(e))
+//fireButton.addEventListener('click', (e) => console.log(e))
 // waterButton.addEventListener('click', (e) => fetchPokemonByType(e))
 // grassButton.addEventListener('click', (e) => fetchPokemonByType(e))
 // electricButton.addEventListener('click', (e) => fetchPokemonByType(e))
@@ -143,10 +156,10 @@ form.addEventListener('submit', (e) => handleSubmitNewPokemon(e))
 
 
 //error function
-function renderUncaught(pokemonId) {
-   error.classList.remove('hidden')
-   error.innerText = "Pokemon no. " + pokemonId + " not yet caught"
-}
+// function renderUncaught(pokemonId) {
+//    error.classList.remove('hidden')
+//    error.innerText = "Pokemon no. " + pokemonId + " not yet caught"
+// }
 
 
 //fetch requests
@@ -154,37 +167,60 @@ function fetchAllPokemon() {
 fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
 .then(res => res.json())
 .then(data => {
-   allPokemon = data.results;
-   listPokemon(allPokemon)
+   data.results.forEach(function(pokemon){
+    fetchPokemonData(pokemon)
+
+})
+
 })
 }
 
-function fetchPokemonForDisplay(displayPokemonURL) {
-      fetch(`${displayPokemonURL}`)
+
+function fetchPokemonData(pokemon){
+      let url = pokemon.url
+    fetch(url)
+    .then(res => res.json())
+    .then(function(pokeData) {
+        listPokemon(pokeData)
+        
+  })
+
+}
+
+
+function fetchPokemonForDisplay(id) {
+      fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then(res => res.json())
       .then(displayPokemon => renderPokemon(displayPokemon))
 }
 
-function fetchPokemonByType(e) {
-   fetch("http://localhost:3000/pokemon")
-   .then(res => res.json())
-   .then(pokemon => {
-         const pokemonByType = pokemon.filter((pokemon) =>
-         pokemon.type === e.target.id)
-         updatePokemonList(pokemonByType)
-
-   })
-}
-
-function addNewPokemon(newPokemon){
-fetch('http://localhost:3000/pokemon',{
-      method: 'POST',
-      headers: {
-         'Content-Type' : 'application/json'
-      },
-      body: JSON.stringify(newPokemon)
-   }).then(res => res.json())
-   .then(newPokemon => alert("You caught " + newPokemon.name))
-}
 
 
+ 
+
+
+
+
+
+
+
+   
+   
+ 
+         // const pokemonByType = pokemon.filter((pokemon) =>
+         // pokemon.type[0].name === type)
+         // console.log(pokemonByType)
+         //listPokemon(pokemonByType)
+   
+
+
+// function addNewPokemon(newPokemon){
+// fetch('http://localhost:3000/pokemon',{
+//       method: 'POST',
+//       headers: {
+//          'Content-Type' : 'application/json'
+//       },
+//       body: JSON.stringify(newPokemon)
+//    }).then(res => res.json())
+//    .then(newPokemon => alert("You caught " + newPokemon.name))
+// }
