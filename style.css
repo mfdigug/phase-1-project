@@ -2,19 +2,19 @@
 box-sizing: border-box;
 margin: 0;
 padding: 0;
-font-family: 'Courier New', Courier, monospace;
+font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 
 /* added typewriter effect */
 .welcome-message-container {
-    grid-area: "pc";
+    /* grid-area: "pc"; */
     border: 5px solid rgb(29, 4, 4);
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 100%;
+    width: 350px;
     margin: 0 auto;
     padding: 50px;
 }
@@ -28,12 +28,6 @@ font-family: 'Courier New', Courier, monospace;
         blink-caret 0.75s step-end infinite;
 }
 
-.hidden {
-    display: none;
-}
-
-
-
 @keyframes typing {
         from { width: 0 }
         to { width: 100% }
@@ -46,109 +40,58 @@ font-family: 'Courier New', Courier, monospace;
 
 /* end typewriter effect */
 
+.hidden {
+    display: none;
+}
+
 header {
-    height: 20%;
-    width: 100%;
     justify-content: center;
-    position: sticky;
-    top: 0;
-    z-index: 40;
     background-color: rgb(255, 255, 255);
 }
 
 h1 {
     color: white;
-    width: 100%;
-    margin-bottom: 5px;
+    font-size: 3rem;
+    padding: 10px;
     text-align: center;
-    border-radius: 4px;
     background-color: rgb(211, 12, 12);
-    /* background: linear-gradient(rgb(255, 255, 255), rgb(237, 87, 87)); */
 }
 
 h1 img {
-    height: 1em
+    height: 1.3em;
+    margin-right: 10px;
 }
 
 .nav-bar {
     display: flex;
     background-color: rgb(255, 254, 254);
     justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    z-index: 40;
+    font-size: 1.3rem;
+    padding: 20px;
 }
 
-.nav-menu {
-
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 50px'
-    
+.nav-bar label{
+    margin: 0 10px;
 }
-
-/* nav button {
-    color: antiquewhite;
-    display: flex;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-    height: 20px;
-    padding: 5px;
-    margin: 5px;
-    align-items: center;
-    border-radius: 4px;
-}
-
-nav button:hover {
-    color: rgb(228, 216, 216);;
-} */
-
-/* #all {
-    background: black;
-}
-
-#grass {
-    background: linear-gradient(to top, rgb(2, 43, 8), rgb(148, 251, 184)); 
-}
-
-#fire {
-    background: linear-gradient(to top, rgb(158, 3, 3), rgb(245, 87, 20));
-}
-
-#water {
-    background: linear-gradient(to top, rgb(47, 0, 149), rgb(122, 193, 250));
-}
-
-#electric {
-    background: linear-gradient(to top, rgb(255, 100, 4), rgb(252, 210, 24));
-} */
-
 
 main {
-    border: 5px solid rgb(245, 0, 0);
-    background-color: rgba(255, 29, 29, 0.694);
-    height: 80%;
-    width: 100%;
-    margin: 0 auto;
-    padding:50px;
-    position: relative;
-    display: grid;
-    grid-template-areas: 
-        "sb pc pc";
-    overflow: auto;
-    justify-content: center;
-    align-items: center;   
+    background-color: rgba(223, 158, 158, 0.694)
 }
 
-
+.container{
+    border: 5px solid rgb(245, 0, 0);
+    background-color: rgba(255, 29, 29, 0.694);
+    margin: 0 auto;
+    padding:50px;
+    width:800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
 
 #sidebar-menu {
-    grid-area: "sb";
     height: 450px;
+    min-width:150px;
     border: 5px solid rgb(255, 0, 0);
     background-color: rgb(255, 255, 255);
     padding: 0.5em;
@@ -158,7 +101,11 @@ main {
 
 li {
     list-style-type: none;
-    padding-bottom: 2px;
+    border: solid 2px grey;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 2px;
+    cursor: pointer;
 }
 
 
@@ -166,48 +113,73 @@ li {
     display: grid;
     grid-template-columns: 1fr 3fr;
     white-space: nowrap;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
     margin: 20px;
     padding: 5px;
+    width: 250px;
+
 }
  
 
 .pokemon-card {
-    grid-area: "pc";
+    display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    width: 100%;
+    width: 350px;
     margin: 0 auto;
     padding: 15px;
-    align-items: center;
+    justify-content: center;
     align-content: center;
+    align-items: center;
     
 }
 
 #display-pokemon-img {
-    height: 8em;
-    width: 8em;
+   
+    height: 150px;
+    width: 150px;
     margin-bottom: 20px;
+    border: solid 2px white;
+    background-color: white;
     border-radius: 10px;
 }
 
 #specifications {
     border: 2px solid rgb(0, 0, 0);
     background-color: rgb(163, 163, 163);
-    font-size: 0.6em;
-    font-style: oblique;
+    font-size: 0.8rem;
     font-weight: bold;
-    padding: 2px
+    padding: 5px;
+    margin-bottom: 5px;
+    width: 250px;
 }
 
 #stats-list {
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    background-color: rgb(210, 234, 255);
-    font-size: medium;
-    padding: 5px
+    display: inline-block;
+    justify-content: space-between;
+    align-content: space-between;
+    border: 2px solid black;
+    background-color: rgb(171, 192, 210);
+    padding: 5px;
+    word-spacing: 0.3rem;
+    margin-bottom: 5px;
+    width: 250px;
+    text-align: center;
 }
+
+.stats-container {
+  display: inline-block;
+  width: 50%;
+  height: 10px; 
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 10px; 
+}
+
+.hp-fill, .attack-fill, .defense-fill, .speed-fill {
+  height: 100%;
+  background-color: #3fe91d; /* Color of the filled portion */
+}
+
 
 #attack-list {
     font-size: large;
@@ -216,6 +188,8 @@ li {
     color:rgb(30, 30, 30);
     border: 2px solid black;
     padding: 5px;
+    width: 250px;
+    text-align: center;
 }
 
 #type-icon {
@@ -226,166 +200,239 @@ li {
 /* style by type */
 
 .grass {
-    border: 5px solid rgb(7, 181, 65);
-    background-color: rgb(143, 241, 166);
+    border: 5px solid #528837;
+    background-color: #78C850;
 }
 
 .grass #type-icon{
     background-image: url(https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png);
 }
 
+.grass #attack-list {
+    background-color: #528837;
+}
+
 .bug {
-    border: 5px solid rgb(7, 181, 65);
-    background-color: rgb(143, 241, 166);
+    border: 5px solid #859404;
+    background-color: #A8B820;
 }
 
 .bug #type-icon{
     background-image: url(https://archives.bulbagarden.net/media/upload/2/2e/Grass-attack.png);
 }
 
+.bug #attack-list {
+    background-color: #859404;
+}
+
 .fire {
-    border: 5px solid rgb(254, 3, 3);
-    background-color: rgb(255, 195, 195);
+    border: 5px solid #eb6403;
+    background-color: #F08030;
 }
 
 .fire #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/a/ad/Fire-attack.png);
 }
 
+.fire #attack-list {
+    background-color: #eb6403;
+}
+
 .dragon {
-    border: 5px solid rgb(254, 3, 3);
-    background-color: rgb(255, 195, 195);
+    border: 5px solid #7038F8;
+    background-color: #ccb9f8;
 }
 
 .dragon #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/8/8a/Dragon-attack.png);
 }
 
+.dragon #attack-list {
+    background-color: #7038F8;
+}
+
 .water {
-    border: 5px solid rgb(0, 8, 158);
-    background-color: rgb(154, 208, 255);
+    border: 5px solid #3e72ea;
+    background-color: #82a3f0;
 }
 
 .water #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/1/11/Water-attack.png);
 }
 
+.water #attack-list {
+    background-color: #3e72ea;
+}
+
 .ice {
-    border: 5px solid rgb(0, 8, 158);
-    background-color: rgb(154, 208, 255);
+    border: 5px solid #23d6d6;
+    background-color: #98D8D8;
 }
 
 .ice #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/1/11/Water-attack.png);
 }
 
+.ice #attack-list {
+    background-color: #23d6d6;
+}
+
 .electric {
-    border: 5px solid rgb(212, 220, 0);
-    background-color: rgb(252, 255, 176);
+    border: 5px solid #F8D030;
+    background-color: #fff1bb;
 }
 
 .electric #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/0/04/Lightning-attack.png);
 }
 
+.electric #attack-list {
+    background-color: #F8D030;
+}
+
 .normal {
-    border: 5px solid rgb(99, 27, 99);
-    background-color: rgb(255, 216, 255);
+    border: 5px solid #a1a142;
+    background-color: #aeae94;
 }
 
 .normal #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/1/1d/Colorless-attack.png);
 }
 
+.normal #attack-list {
+    background-color: #a1a142;
+}
+
 .fighting {
-    border: 5px solid rgb(255, 149, 0);
-    background-color: rgb(246, 200, 137);
+    border: 5px solid #C03028;
+    background-color: #ba8582;
 }
 
 .fighting #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/4/48/Fighting-attack.png)
 }
 
+.fighting #attack-list {
+    background-color: #C03028;
+}
+
 .ground {
-    border: 5px solid rgb(255, 149, 0);
-    background-color: rgb(246, 200, 137);
+    border: 5px solid #cea22a;
+    background-color: #e0c781;
+    
 }
 
 .ground #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/4/48/Fighting-attack.png)
 }
 
+.ground #attack-list {
+    background-color: #cea22a;
+}
+
 .rock {
-    border: 5px solid rgb(255, 149, 0);
-    background-color: rgb(246, 200, 137);
+    border: 5px solid #756623;
+    background-color: #b5aa78;
 }
 
 .rock #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/4/48/Fighting-attack.png)
 }
 
+.rock #attack-list {
+    background-color: #756623;
+}
+
 .flying {
-    border: 5px solid rgb(97, 213, 255);
-    background-color: rgb(198, 240, 255);
+    border: 5px solid #A890F0;
+    background-color: #dcd5f4;
 }
 
 .flying #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/1/1d/Colorless-attack.png);
 }
 
+.flying #attack-list {
+    background-color: #A890F0;
+}
+
 .steel {
-    border: 5px solid rgb(96, 96, 96);
-    background-color: rgb(198, 198, 198);
+    border: 5px solid #63636f;
+    background-color: #B8B8D0;
 }
 
 .steel #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/6/64/Metal-attack.png);
 }
 
+.steel #attack-list {
+    background-color: #63636f;
+}
+
 .psychic {
-    border: 5px solid rgb(182, 0, 202);
-    background-color: rgb(247, 195, 252)
+    border: 5px solid #f44e7f;
+    background-color: #f288a8;
 }
 
 .psychic  #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/e/ef/Psychic-attack.png);
 }
 
+.psychic #attack-list {
+    background-color: #f44e7f;
+}
+
 .poison  {
-    border: 5px solid rgb(182, 0, 202);
-    background-color: rgb(247, 195, 252);
+    border: 5px solid #A040A0;
+    background-color: rgb(220, 197, 222)
 }
 
 .poison #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/a/ab/Darkness-attack.png);
 }
 
+.poison #attack-list {
+    background-color: #A040A0;
+}
+
 .ghost  {
-    border: 5px solid rgb(182, 0, 202);
-    background-color: rgb(247, 195, 252);
+    border: 5px solid #705898;
+    background-color: #ae9cca;
 }
 
 .ghost #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/a/ab/Darkness-attack.png);
 }
 
+.ghost #attack-list {
+    background-color: #705898;
+}
+
 
 .dark {
-    border: 5px solid rgb(182, 0, 202);
-    background-color: rgb(247, 195, 252);
+    border: 5px solid #5a4b41;
+    background-color: #ada19a;
 }
 
 .dark #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/a/ab/Darkness-attack.png);
 }
 
+.dark #attack-list {
+    background-color: #5a4b41;
+}
+
 .fairy {
-    border: 5px solid rgb(253, 0, 148);
-    background-color: rgb(251, 199, 229);
+    border: 5px solid #f37590;
+    background-color: #f2c8d1;
 }
 
 .fairy #type-icon {
     background-image: url(https://archives.bulbagarden.net/media/upload/4/40/Fairy-attack.png);
+}
+
+.fairy #attack-list {
+    background-color: #f37590;
 }
 
 

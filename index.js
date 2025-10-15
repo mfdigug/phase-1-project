@@ -32,7 +32,8 @@ function listPokemon(pokeData) {
        
 
 function renderPokemon(displayPokemon) {
-    displayedPokemon = displayPokemon
+   displayedPokemon = displayPokemon;
+
     //clear type classes from previous renders
     pokemonCard.classList.remove('normal', 'water', 'fire', 'electric', 'grass', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy');
 
@@ -59,15 +60,23 @@ function renderPokemon(displayPokemon) {
       </div>
 
       <div id="stats-list">
-      hp: ${displayPokemon.stats[0].base_stat} <br>
-      attack: ${displayPokemon.stats[1].base_stat} <br>
-      defense: ${displayPokemon.stats[2].base_stat} <br>
-      speed: ${displayPokemon.stats[5].base_stat} <br>
+
+      hp: ${displayPokemon.stats[0].base_stat}
+      <div class="stats-container"><div class="hp-fill" style="width:${displayPokemon.stats[0].base_stat}%"></div></div><br>
+     
+      attack: ${displayPokemon.stats[1].base_stat}
+      <div class="stats-container"><div class="attack-fill" style="width:${displayPokemon.stats[1].base_stat}%"></div></div><br>
+
+      defense: ${displayPokemon.stats[2].base_stat}
+      <div class="stats-container"><div class="defense-fill" style="width:${displayPokemon.stats[2].base_stat}%"></div></div><br>
+
+      speed: ${displayPokemon.stats[5].base_stat}
+      <div class="stats-container"><div class="speed-fill" style="width:${displayPokemon.stats[5].base_stat}%"></div></div>
       </div>
 
       <div id="attack-list">
-      ${displayPokemon.moves[0].move.name}
-      ${displayPokemon.moves[1].move.name}
+      &#8213; ${displayPokemon.moves[0].move.name} &#8213;<br>
+      &#8213; ${displayPokemon.moves[1].move.name} &#8213;
       </div>
    `
 };
@@ -107,7 +116,6 @@ fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
       })
    })
 }
-
 
 function fetchPokemonData(pokemon){
     fetch(pokemon.url)
