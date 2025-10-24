@@ -1,7 +1,7 @@
 //variables
 let allPokemon = []
 let displayedPokemon
-
+let pokemonByType = []
 //display variables
 const pokemonList = document.querySelector("#pokemon-list")
 const welcomeMessageContainer = document.querySelector(".welcome-message-container")
@@ -27,12 +27,9 @@ function listPokemon(pokeData) {
    pokemonList.appendChild(li);
    li.addEventListener('click', (e) => renderPokemon(e.target.textContent))
       
-      
-    
-      
-   // if(welcomeMessageContainer.classList.contains('hidden')){
-   //    renderPokemon(pokemonList.firstElementChild.textContent)
-   //    }
+   if(welcomeMessageContainer.classList.contains('hidden')){
+      renderPokemon(pokemonList.firstElementChild.textContent)
+   }
       
 }
        
@@ -44,8 +41,8 @@ function renderPokemon(displayPokemon) {
    console.log(displayedPokemon)
 
     //clear type classes from previous renders
-   pokemonCard.classList.remove('normal', 'water', 'fire', 'electric', 'grass', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy');
-
+   pokemonCard.classList.remove(firstChild);
+   
    //css changes
    welcomeMessageContainer.classList.add('hidden');
    pokemonCard.classList.remove('hidden')
@@ -108,9 +105,10 @@ document.addEventListener('keydown', (e) => {
    document.getElementById('pokemon-types').addEventListener('change', (e) => {
       pokemonList.innerHTML = ""
       if(e.target.value === "all"){
-         fetchAllPokemon()
+         allPokemon.forEach(pokeData => listPokemon(pokeData))
       } else {
-      fetchPokemonByType(e.target.value)
+         pokemonByType = allPokemon.filter(pokeData => pokeData.types[0].type.name === e.target.value)
+         pokemonByType.forEach(pokeData => listPokemon(pokeData))
       }}
    )
 
@@ -127,34 +125,9 @@ async function fetchAllPokemon() {
     
 }
   
-
-
 async function fetchPokemonData(pokemon){
    const res = await fetch(pokemon.url)
    const pokeData = await res.json()
    allPokemon = [...allPokemon, pokeData]
    listPokemon(pokeData)
 }      
-
-
-
-function fetchPokemonByType(selectedType) {
-   fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
-   .then(res => res.json())
-   .then(data => {
-      data.results.forEach(function(pokemon){
-    fetchPokemonDataByType(pokemon, selectedType)
-   })
-})
-}
-
-function fetchPokemonDataByType(pokemon, selectedType) {
-   let url = pokemon.url
-    fetch(url)
-    .then(res => res.json())
-    .then(pokeData => {
-      if(pokeData.types[0].type.name === selectedType)
-      listPokemon(pokeData)
-    })      
-}
-
