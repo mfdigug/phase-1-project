@@ -105,11 +105,19 @@ document.addEventListener('keydown', (e) => {
 
    document.getElementById('pokemon-types').addEventListener('change', (e) => {
       pokemonList.innerHTML = ""
+      
       if(e.target.value === "all"){
          allPokemon.forEach(pokeData => listPokemon(pokeData))
       } else {
-         pokemonByType = allPokemon.filter(pokeData => pokeData.types[0].type.name === e.target.value)
-         pokemonByType.forEach(pokeData => listPokemon(pokeData))
+         pokemonByType = allPokemon.filter(pokeData => {  
+            if(pokeData.types[1]) {
+               return pokeData.types[0].type.name === e.target.value || pokeData.types[1].type.name === e.target.value
+            } else {
+               return pokeData.types[0].type.name === e.target.value 
+            }
+      })
+
+      pokemonByType.forEach(pokeData => listPokemon(pokeData))
       }}
    )
 
