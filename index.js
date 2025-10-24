@@ -13,70 +13,79 @@ const pokemonCard = document.querySelector("#pokemon-card")
 //initialise
 fetchAllPokemon();
 
-function listPokemon(pokeData) {
-  
-    welcomeMessageContainer.innerHTML = `<p class="welcome-message"> 
-    Welcome to the world of Pokemon! 
-    </p>`
 
-      const li = document.createElement("li");
-      li.innerText = pokeData.name;
-      li.dataset.id = pokeData.id;
-      li.dataset.type = pokeData.types[0].type.name
-      pokemonList.appendChild(li);
-   if(welcomeMessageContainer.classList.contains('hidden')){
-      fetchPokemonForDisplay(pokemonList.firstElementChild.dataset.id)
-      }
-      li.addEventListener('click', (e) => fetchPokemonForDisplay(e.target.dataset.id))
-     }
+function listPokemon(pokeData) {
+ 
+   welcomeMessageContainer.innerHTML = `<p class="welcome-message"> 
+   Welcome to the world of Pokemon! 
+   </p>`
+
+      
+   const li = document.createElement("li");
+   li.innerText = pokeData.name;
+   li.dataset.id = pokeData.id
+   pokemonList.appendChild(li);
+   li.addEventListener('click', (e) => renderPokemon(e.target.textContent))
+      
+      
+    
+      
+   // if(welcomeMessageContainer.classList.contains('hidden')){
+   //    renderPokemon(pokemonList.firstElementChild.textContent)
+   //    }
+      
+}
        
 
 function renderPokemon(displayPokemon) {
-   displayedPokemon = displayPokemon;
+   console.log(displayPokemon)
+   console.log(allPokemon)
+   displayedPokemon = allPokemon.find(pokeData => pokeData.name === displayPokemon)
+   console.log(displayedPokemon)
 
     //clear type classes from previous renders
-    pokemonCard.classList.remove('normal', 'water', 'fire', 'electric', 'grass', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy');
+   pokemonCard.classList.remove('normal', 'water', 'fire', 'electric', 'grass', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy');
 
    //css changes
    welcomeMessageContainer.classList.add('hidden');
    pokemonCard.classList.remove('hidden')
    pokemonCard.classList.add('pokemon-card')
-   pokemonCard.classList.add(displayPokemon.types[0].type.name) 
+   pokemonCard.classList.add(displayedPokemon.types[0].type.name) 
   
    //pokemon card content
    pokemonCard.innerHTML = `
       <div id="pokemon-card-header">
       <div id="type-icon"></div>
-      <h2 id="pokemon-name"> ${displayPokemon.name}</h2>
+      <h2 id="pokemon-name"> ${displayedPokemon.name}</h2>
       </div>
 
-      <img id="display-pokemon-img" src="${displayPokemon.sprites.front_default}">
+      <img id="display-pokemon-img" src="${displayedPokemon.sprites.front_default}">
 
       <div id="specifications">
-      No: ${displayPokemon.id}
-      Type: ${displayPokemon.types[0].type.name}
-      Ht: ${displayPokemon.height/10}m
-      Wt: ${displayPokemon.weight/10}kg
+      No: ${displayedPokemon.id}
+      Type: ${displayedPokemon.types[0].type.name}
+      Ht: ${displayedPokemon.height/10}m
+      Wt: ${displayedPokemon.weight/10}kg
       </div>
 
       <div id="stats-list">
 
-      hp: ${displayPokemon.stats[0].base_stat}
-      <div class="stats-container"><div class="hp-fill" style="width:${displayPokemon.stats[0].base_stat}%"></div></div><br>
+      hp: ${displayedPokemon.stats[0].base_stat}
+      <div class="stats-container"><div class="hp-fill" style="width:${displayedPokemon.stats[0].base_stat}%"></div></div><br>
      
-      attack: ${displayPokemon.stats[1].base_stat}
-      <div class="stats-container"><div class="attack-fill" style="width:${displayPokemon.stats[1].base_stat}%"></div></div><br>
+      attack: ${displayedPokemon.stats[1].base_stat}
+      <div class="stats-container"><div class="attack-fill" style="width:${displayedPokemon.stats[1].base_stat}%"></div></div><br>
 
-      defense: ${displayPokemon.stats[2].base_stat}
-      <div class="stats-container"><div class="defense-fill" style="width:${displayPokemon.stats[2].base_stat}%"></div></div><br>
+      defense: ${displayedPokemon.stats[2].base_stat}
+      <div class="stats-container"><div class="defense-fill" style="width:${displayedPokemon.stats[2].base_stat}%"></div></div><br>
 
-      speed: ${displayPokemon.stats[5].base_stat}
-      <div class="stats-container"><div class="speed-fill" style="width:${displayPokemon.stats[5].base_stat}%"></div></div>
+      speed: ${displayedPokemon.stats[5].base_stat}
+      <div class="stats-container"><div class="speed-fill" style="width:${displayedPokemon.stats[5].base_stat}%"></div></div>
       </div>
 
       <div id="attack-list">
-      &#8213; ${displayPokemon.moves[0].move.name} &#8213;<br>
-      &#8213; ${displayPokemon.moves[1].move.name} &#8213;
+      &#8213; ${displayedPokemon.moves[0].move.name} &#8213;<br>
+      &#8213; ${displayedPokemon.moves[1].move.name} &#8213;
       </div>
    `
 };
@@ -84,13 +93,14 @@ function renderPokemon(displayPokemon) {
 //global event listeners
 document.addEventListener('keydown', (e) => {   
    if (!displayedPokemon) {
-      fetchPokemonForDisplay(1)
+      let newDisplayPoke = allPokemon.find(pokeData => pokeData.id === 1)
+      renderPokemon(newDisplayPoke.name)
       } else if (displayedPokemon && e.key === "ArrowDown") {
-      let newId = displayedPokemon.id + 1
-      fetchPokemonForDisplay(newId)  
+      let newDisplayPoke = allPokemon.find(pokeData => pokeData.id === displayedPokemon.id + 1)
+      renderPokemon(newDisplayPoke.name)  
       } else if (displayedPokemon && e.key === "ArrowUp") {
-      let newId = displayedPokemon.id - 1
-      fetchPokemonForDisplay(newId) 
+      let newDisplayPoke = allPokemon.find(pokeData => pokeData.id === displayedPokemon.id - 1)
+      renderPokemon(newDisplayPoke.name)
       }
    })
 
@@ -107,29 +117,26 @@ document.addEventListener('keydown', (e) => {
 
 
 //fetch requests
-function fetchAllPokemon() {
-fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
-.then(res => res.json())
-.then(data => {
+async function fetchAllPokemon() {
+   const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
+   const data = await res.json()
+
    data.results.forEach(pokemon => {
          fetchPokemonData(pokemon)
-      })
    })
+    
 }
+  
 
-function fetchPokemonData(pokemon){
-    fetch(pokemon.url)
-    .then(res => res.json())
-    .then(pokeData => {
-      listPokemon(pokeData)
-   })      
-}
 
-function fetchPokemonForDisplay(id) {
-      fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-      .then(res => res.json())
-      .then(displayPokemon => renderPokemon(displayPokemon))
-}
+async function fetchPokemonData(pokemon){
+   const res = await fetch(pokemon.url)
+   const pokeData = await res.json()
+   allPokemon = [...allPokemon, pokeData]
+   listPokemon(pokeData)
+}      
+
+
 
 function fetchPokemonByType(selectedType) {
    fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
