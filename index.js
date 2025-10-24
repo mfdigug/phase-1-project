@@ -12,6 +12,8 @@ const pokemonCard = document.querySelector("#pokemon-card")
 //initialise
 fetchAllPokemon();
 
+
+//display functions
 function listPokemon(pokeData) {
  
    welcomeMessageContainer.innerHTML = `<p class="welcome-message"> 
@@ -20,7 +22,6 @@ function listPokemon(pokeData) {
 
    const li = document.createElement("li");
    li.innerText = pokeData.name;
-   li.dataset.id = pokeData.id
    pokemonList.appendChild(li);
    li.addEventListener('click', (e) => renderPokemon(e.target.textContent))
       
@@ -32,11 +33,15 @@ function listPokemon(pokeData) {
        
 
 function renderPokemon(displayPokemon) {
-   console.log(displayPokemon)
-   console.log(allPokemon)
    displayedPokemon = allPokemon.find(pokeData => pokeData.name === displayPokemon)
-
-    //clear type classes from previous renders
+   let secondType
+   if(displayedPokemon.types[1]) {
+   secondType = displayedPokemon.types[1].type.name
+   } else {
+      secondType = ""
+   }
+   
+   //clear type classes from previous renders
    pokemonCard.classList.remove('normal', 'water', 'fire', 'electric', 'grass', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy');
    
    //css changes
@@ -56,9 +61,9 @@ function renderPokemon(displayPokemon) {
 
       <div id="specifications">
       No: ${displayedPokemon.id}
-      Type: ${displayedPokemon.types[0].type.name}
       Ht: ${displayedPokemon.height/10}m
-      Wt: ${displayedPokemon.weight/10}kg
+      Wt: ${displayedPokemon.weight/10}kg <br>
+      Type(s): ${displayedPokemon.types[0].type.name} ${secondType}
       </div>
 
       <div id="stats-list">
@@ -112,11 +117,9 @@ document.addEventListener('keydown', (e) => {
 async function fetchAllPokemon() {
    const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
    const data = await res.json()
-
    data.results.forEach(pokemon => {
          fetchPokemonData(pokemon)
    })
-    
 }
   
 async function fetchPokemonData(pokemon){
@@ -124,4 +127,4 @@ async function fetchPokemonData(pokemon){
    const pokeData = await res.json()
    allPokemon = [...allPokemon, pokeData]
    listPokemon(pokeData)
-}      
+}
