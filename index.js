@@ -1,18 +1,16 @@
-//variables
+//global content variables
 let allPokemon = []
 let displayedPokemon
 let pokemonByType = []
-//display variables
+
+//DOM variables
 const pokemonList = document.querySelector("#pokemon-list")
 const welcomeMessageContainer = document.querySelector(".welcome-message-container")
-
-//pokemon card variables
 const pokemonCard = document.querySelector("#pokemon-card")
 
 
 //initialise
 fetchAllPokemon();
-
 
 function listPokemon(pokeData) {
  
@@ -20,7 +18,6 @@ function listPokemon(pokeData) {
    Welcome to the world of Pokemon! 
    </p>`
 
-      
    const li = document.createElement("li");
    li.innerText = pokeData.name;
    li.dataset.id = pokeData.id
@@ -38,10 +35,9 @@ function renderPokemon(displayPokemon) {
    console.log(displayPokemon)
    console.log(allPokemon)
    displayedPokemon = allPokemon.find(pokeData => pokeData.name === displayPokemon)
-   console.log(displayedPokemon)
 
     //clear type classes from previous renders
-   pokemonCard.classList.remove(firstChild);
+   pokemonCard.classList.remove('normal', 'water', 'fire', 'electric', 'grass', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy');
    
    //css changes
    welcomeMessageContainer.classList.add('hidden');
@@ -111,8 +107,6 @@ document.addEventListener('keydown', (e) => {
          pokemonByType.forEach(pokeData => listPokemon(pokeData))
       }}
    )
-
-
 
 //fetch requests
 async function fetchAllPokemon() {
